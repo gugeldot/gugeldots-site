@@ -1,7 +1,8 @@
 {
   "permissions": {
     "allow": [
-      "Bash(grep -E \"\\\\.\\(html|md|txt\\)$\")"
+      "Bash(grep -E \"\\\\.\\(html|md|txt\\)$\")",
+      "Bash(curl -s \"https://api.github.com/users/gugeldot/repos?per_page=20&sort=updated\")"
     ]
   }
 }

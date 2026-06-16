@@ -3,7 +3,7 @@
 // ==========================================================================
 
 let currentSection = 0;
-const totalSections = 5;
+const totalSections = 6;
 
 function scrollToSection(index) {
     currentSection = index;
@@ -23,8 +23,8 @@ function updateDuckVisibility() {
         clearTimeout(duckTimeout);
     }
 
-    // Section 4 is the Contact section (0-indexed: Home=0, About=1, Roadmap=2, Projects=3, Contact=4)
-    if (currentSection === 4) {
+    // Section 5 is the Contact section (0-indexed: Home=0, About=1, Roadmap=2, Projects=3, Repos=4, Contact=5)
+    if (currentSection === 5) {
         duckTimeout = setTimeout(() => {
             duckImage.classList.add('visible');
         }, 1000);
