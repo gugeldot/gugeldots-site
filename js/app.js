@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initSearch();
     initSidebarClickOutside();
     initRoadmap();
+    initMobileDetection();
 
     console.log('Portfolio initialized successfully');
 });
