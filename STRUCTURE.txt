@@ -1,0 +1,63 @@
+gugeldots-site/
+│
+├── 📄 index.html                                    [Main HTML - Semantic structure]
+│
+├── 🎨 css/
+│   └── styles.css                                   [All styles - 4KB, well-commented]
+│       • Variables & Reset
+│       • Background Animation  
+│       • Layout Structure
+│       • Navigation Dots
+│       • Hero Section
+│       • About Section
+│       • Roadmap Section
+│       • Projects Section
+│       • Contact Section
+│       • Sidebar Modal
+│       • Search Box
+│       • CV Modal
+│       • Responsive Design
+│       • Scrollbar Styling
+│
+├── 📦 js/                                           [Modular JavaScript]
+│   ├── app.js                (365 bytes)            [Main entry point]
+│   ├── navigation.js         (1.8 KB)              [Horizontal scroll logic]
+│   ├── sidebar.js            (7.2 KB)              [Modal content & controls]
+│   ├── search.js             (1.5 KB)              [Search functionality]
+│   ├── cv-modal.js           (221 bytes)           [CV viewer]
+│   └── particles.js          (448 bytes)           [Background animation]
+│
+├── 📁 assets/                                       [Future: images, icons]
+│
+├── 📑 Documents
+│   ├── CV Rodrigo Palomo ENG.pdf
+│   ├── TFG-GISI-PalomoCuenca-Rodrigo-spanish.pdf
+│   └── TFM.pdf
+│
+└── 📚 Documentation
+    ├── README.md                                    [User guide]
+    ├── ARCHITECTURE.md                              [Technical architecture]
+    ├── STRUCTURE.txt                                [This file]
+    └── .gitignore                                   [Git exclusions]
+
+═══════════════════════════════════════════════════════════════════
+
+LOAD ORDER:
+1. index.html                    → HTML structure
+2. css/styles.css               → All styles load
+3. js/particles.js              → Background animation
+4. js/navigation.js             → Navigation system
+5. js/sidebar.js                → Sidebar functionality
+6. js/search.js                 → Search system
+7. js/cv-modal.js               → CV viewer
+8. js/app.js                    → Initialize everything
+
+═══════════════════════════════════════════════════════════════════
+
+TOTAL SIZE (Minified would be):
+• HTML: ~8 KB
+• CSS: ~12 KB
+• JS: ~11 KB
+• Total: ~31 KB (extremely lightweight!)
+
+═══════════════════════════════════════════════════════════════════

@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Rodrigo Palomo Cuenca - Cybersecurity Researcher & Engineer specializing in OT/ICS Security, Penetration Testing & DevSecOps">
+    <meta name="author" content="Rodrigo Palomo Cuenca">
+    <meta name="keywords" content="cybersecurity, penetration testing, OT/ICS security, DevSecOps, BadUSB, industrial security">
+    <title>Rodrigo Palomo Cuenca - Cybersecurity Portfolio</title>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Animated background -->
+    <div class="bg-animation" id="particles"></div>
+
+    <!-- Main wrapper that shifts when sidebar opens -->
+    <div class="main-wrapper" id="mainWrapper">
+
+        <!-- Navigation dots -->
+        <div class="nav-dots">
+            <div class="nav-dot active" data-section="Home" data-index="0"></div>
+            <div class="nav-dot" data-section="About" data-index="1"></div>
+            <div class="nav-dot" data-section="Roadmap" data-index="2"></div>
+            <div class="nav-dot" data-section="Projects" data-index="3"></div>
+            <div class="nav-dot" data-section="Contact" data-index="4"></div>
+        </div>
+
+        <!-- Horizontal scroll container -->
+        <div class="scroll-container" id="scrollContainer">
+
+            <!-- Hero Section -->
+            <section class="section">
+                <div class="hero-content">
+                    <h1>Rodrigo Palomo Cuenca</h1>
+                    <p class="nickname">GUGELDOT</p>
+                    <p class="subtitle">Cybersecurity Enthusiast</p>
+                    <p class="tagline">
+                        Information Systems Engineer exploring OT/ICS Security and Penetration Testing<br>
+                        Building skills in offensive security and industrial systems
+                    </p>
+                    <div class="cta-buttons">
+                        <button class="cta-button primary" onclick="scrollToSection(1)">Explore My Work</button>
+                        <button class="cta-button" onclick="openCVModal()">View CV</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- About Section -->
+            <section class="section">
+                <div class="about-container">
+                    <h2>About Me</h2>
+                    <p class="about-subtitle">
+                        Information Systems Engineer from Universidad de Alcalá<br>
+                        Currently pursuing Master's in Cybersecurity at UNIR, focusing on OT/ICS Security
+                    </p>
+                    <div class="about-grid">
+                        <div class="skill-card" onclick="openSidebar('penetration')">
+                            <div class="skill-icon">🎯</div>
+                            <h3>Penetration Testing</h3>
+                            <p>Learning offensive security methodologies and exploitation techniques</p>
+                        </div>
+                        <div class="skill-card" onclick="openSidebar('hardware')">
+                            <div class="skill-icon">🔧</div>
+                            <h3>Hardware Security</h3>
+                            <p>Researching BadUSB and embedded device security</p>
+                        </div>
+                        <div class="skill-card" onclick="openSidebar('ot')">
+                            <div class="skill-icon">🏭</div>
+                            <h3>OT/ICS Security</h3>
+                            <p>Exploring industrial protocols and SCADA systems</p>
+                        </div>
+                        <div class="skill-card" onclick="openSidebar('devsecops')">
+                            <div class="skill-icon">⚙️</div>
+                            <h3>DevSecOps</h3>
+                            <p>Developing CI/CD security automation skills</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Roadmap Section -->
+            <section class="section">
+                <div class="roadmap-wrapper">
+                    <h2>Certification Roadmap</h2>
+                    <div class="roadmap-container">
+                        <svg class="roadmap-svg" id="roadmapPath" viewBox="0 0 1200 400" preserveAspectRatio="xMidYMid meet"></svg>
+                        <div class="roadmap-checkpoints" id="roadmapCheckpoints"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Projects Section -->
+            <section class="section">
+                <div style="max-width: 1400px;">
+                    <h2 style="font-size: 3rem; color: var(--text-primary); margin-bottom: 2rem; text-align: center;">
+                        Academic & Research Projects
+                    </h2>
+
+                    <!-- Platform Links -->
+                    <div class="platform-links">
+                        <a href="https://app.hackthebox.com/public/users/2388245" class="platform-badge" target="_blank" rel="noopener noreferrer">
+                            <img src="resources/hackthebox-logo.png" alt="HackTheBox" class="platform-logo">
+                            <div class="platform-info">
+                                <span class="platform-name">HackTheBox</span>
+                                <span class="platform-username">@gugeldot</span>
+                                <span class="platform-stats">70+ rooted machines • Professional Grade 3 Rank</span>
+                            </div>
+                        </a>
+                        <a href="https://tryhackme.com/p/gugeldot" class="platform-badge" target="_blank" rel="noopener noreferrer">
+                            <img src="resources/tryhackme-logo.png" alt="TryHackMe" class="platform-logo">
+                            <div class="platform-info">
+                                <span class="platform-name">TryHackMe</span>
+                                <span class="platform-username">@gugeldot</span>
+                                <span class="platform-stats">Level Master • Top 3% • 180+ rooms</span>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="projects-grid" style="margin-top: 3rem;">
+                        <div class="project-card" onclick="openSidebar('tfg')">
+                            <h3>Bachelor's Thesis: BadUSB Analysis</h3>
+                            <p class="project-meta">Universidad de Alcalá | 2026</p>
+                            <p>Comprehensive research on HID emulation devices analyzing attack vectors and mitigation strategies. Includes firmware analysis and detection techniques.</p>
+                            <p><strong style="color: var(--purple-accent);">Results:</strong> Proposed detection framework based on behavioral analysis</p>
+                            <div class="tech-tags">
+                                <span class="tech-tag">Hardware Security</span>
+                                <span class="tech-tag">USB Protocol</span>
+                                <span class="tech-tag">Firmware Analysis</span>
+                                <span class="tech-tag">Python</span>
+                            </div>
+                        </div>
+
+                        <div class="project-card" onclick="openSidebar('tfm')">
+                            <h3>Master's Thesis: AI-Assisted DevSecOps</h3>
+                            <p class="project-meta">UNIR | In Development | Expected 2027</p>
+                            <p>Development of intelligent CI/CD pipeline integrating SAST and DAST with LLM assistance to optimize vulnerability detection and reduce false positives.</p>
+                            <p><strong style="color: var(--purple-accent);">Status:</strong> Implementation phase - pipeline architecture completed</p>
+                            <div class="tech-tags">
+                                <span class="tech-tag">DevSecOps</span>
+                                <span class="tech-tag">AI/LLM</span>
+                                <span class="tech-tag">SAST/DAST</span>
+                                <span class="tech-tag">CI/CD</span>
+                                <span class="tech-tag">Python</span>
+                            </div>
+                        </div>
+
+                        <div class="project-card" onclick="openSidebar('slys')">
+                            <h3>SLYS: File Fragmentator</h3>
+                            <p class="project-meta">Side Project | In Development | Open Source</p>
+                            <p>Privacy-focused file fragmentation and encryption tool with secure self-erasure mechanism. Requires password and seed for reconstruction.</p>
+                            <p><strong style="color: var(--purple-accent);">Features:</strong> Fragment encryption, seed generation, zero-overwrite deletion</p>
+                            <div class="tech-tags">
+                                <span class="tech-tag">Rust</span>
+                                <span class="tech-tag">Cryptography</span>
+                                <span class="tech-tag">Privacy Tools</span>
+                                <span class="tech-tag">Secure Deletion</span>
+                            </div>
+                        </div>
+
+                        <div class="project-card" onclick="openSidebar('irongate')">
+                            <h3>PROJECT IRONGATE</h3>
+                            <p class="project-meta">Side Project | Research | OT/ICS Security</p>
+                            <p>Industrial protocol fuzzer (Modbus TCP, S7comm) in Rust for OT/ICS security research. Includes mutation engine and PLC anomaly detection.</p>
+                            <p><strong style="color: var(--purple-accent);">Goal:</strong> Publication at industrial security conferences (S4x, ICS-CERT)</p>
+                            <div class="tech-tags">
+                                <span class="tech-tag">Rust</span>
+                                <span class="tech-tag">Fuzzing</span>
+                                <span class="tech-tag">Modbus TCP</span>
+                                <span class="tech-tag">S7comm</span>
+                                <span class="tech-tag">OT/ICS</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contact Section -->
+            <section class="section">
+                <div class="contact-container">
+                    <h2>Get In Touch</h2>
+                    <p style="color: var(--text-secondary); font-size: 1.2rem; margin-bottom: 2rem;">
+                        Interested in collaboration or have questions? Let's connect.
+                    </p>
+                    <div class="contact-links">
+                        <a href="mailto:gugeldot23@gmail.com" class="contact-link">📧 Email</a>
+                        <a href="https://github.com/gugeldot" class="contact-link" target="_blank">🔗 GitHub</a>
+                        <a href="https://linkedin.com/in/rodrigo-palomo-cuenca" class="contact-link" target="_blank">💼 LinkedIn</a>
+                    </div>
+                    <p style="color: var(--text-secondary); margin-top: 3rem; font-size: 0.9rem;">
+                        © 2026 Rodrigo Palomo Cuenca<br>
+                        Cybersecurity Researcher | Pentester | OT/ICS Security Specialist
+                    </p>
+                </div>
+            </section>
+        </div>
+
+        <!-- Search Container -->
+        <div class="search-container">
+            <input type="text" class="search-box" placeholder="🔍 Search portfolio..." id="searchInput" autocomplete="off">
+            <div class="search-results" id="searchResults"></div>
+        </div>
+    </div>
+
+    <!-- Sidebar Modal -->
+    <div class="sidebar-modal" id="sidebarModal">
+        <span class="sidebar-close" onclick="closeSidebar()">&times;</span>
+        <div class="sidebar-content" id="sidebarContent"></div>
+    </div>
+
+    <!-- CV Modal -->
+    <div class="cv-modal" id="cvModal">
+        <div class="cv-content">
+            <div class="cv-header">
+                <h3>Curriculum Vitae - Rodrigo Palomo Cuenca</h3>
+                <button class="cv-close" onclick="closeCVModal()">Close</button>
+            </div>
+            <iframe src="https://drive.google.com/file/d/1xqzxs2IJRaWtPByku18_L65hoMltJPDM/preview" allow="autoplay"></iframe>
+        </div>
+    </div>
+
+    <!-- JavaScript Modules -->
+    <script src="js/particles.js"></script>
+    <script src="js/navigation.js"></script>
+    <script src="js/sidebar.js"></script>
+    <script src="js/roadmap.js"></script>
+    <script src="js/search.js"></script>
+    <script src="js/cv-modal.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

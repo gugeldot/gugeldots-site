@@ -1,0 +1,25 @@
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor directories
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Temporary files
+*.tmp
+*.bak
+
+# Node modules (if ever needed)
+node_modules/
+
+# Build outputs (if ever added)
+dist/
+build/
+
+# Private documents (CVs, academic papers)
+docs/
+*.pdf
