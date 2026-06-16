@@ -27,9 +27,72 @@ const searchableContent = [
     { term: 'TryHackMe', section: 3, desc: 'Level Master • Top 3% • 180+ rooms' },
 ];
 
+function typewriterPlaceholder(element, text, speed = 100) {
+    let i = 0;
+    element.placeholder = '';
+
+    const typing = setInterval(() => {
+        if (i < text.length) {
+            element.placeholder += text.charAt(i);
+            i++;
+        } else {
+            clearInterval(typing);
+            isTyping = false;
+        }
+    }, speed);
+
+    return typing;
+}
+
+let typingInterval;
+let isTyping = false;
+
 function initSearch() {
     const searchInput = document.getElementById('searchInput');
     const searchResults = document.getElementById('searchResults');
+    const searchContainer = searchInput.closest('.search-container');
+    const placeholderText = 'Search in Portfolio';
+
+    searchInput.placeholder = '';
+
+    searchContainer.addEventListener('mouseenter', () => {
+        searchContainer.classList.add('expanded');
+        if (!isTyping && searchInput.placeholder !== placeholderText) {
+            isTyping = true;
+            if (typingInterval) clearInterval(typingInterval);
+            typingInterval = typewriterPlaceholder(searchInput, placeholderText, 80);
+        }
+    });
+
+    searchContainer.addEventListener('mouseleave', () => {
+        if (!searchInput.matches(':focus')) {
+            if (typingInterval) clearInterval(typingInterval);
+            searchContainer.classList.remove('expanded');
+            searchInput.placeholder = '';
+            isTyping = false;
+        }
+    });
+
+    searchInput.addEventListener('focus', () => {
+        searchContainer.classList.add('expanded');
+        // Si está escribiendo, completar el texto inmediatamente
+        if (isTyping) {
+            if (typingInterval) clearInterval(typingInterval);
+            searchInput.placeholder = placeholderText;
+            isTyping = false;
+        } else if (searchInput.placeholder !== placeholderText) {
+            searchInput.placeholder = placeholderText;
+        }
+    });
+
+    searchInput.addEventListener('blur', () => {
+        if (!searchContainer.matches(':hover')) {
+            if (typingInterval) clearInterval(typingInterval);
+            searchContainer.classList.remove('expanded');
+            searchInput.placeholder = '';
+            isTyping = false;
+        }
+    });
 
     searchInput.addEventListener('input', (e) => {
         const query = e.target.value.toLowerCase();
