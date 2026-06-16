@@ -6,16 +6,6 @@
 const roadmapData = [
     {
         id: 1,
-        title: 'Systems Information Engineering',
-        shortTitle: 'Bachelor\'s Degree',
-        date: '2026',
-        status: 'completed',
-        type: 'degree',
-        description: 'Information Systems Engineering from Universidad de Alcalá',
-        key: 'tfg'
-    },
-    {
-        id: 2,
         title: 'eJPTv2',
         shortTitle: 'eJPTv2',
         date: '2025',
@@ -23,6 +13,16 @@ const roadmapData = [
         type: 'certification',
         description: 'eLearnSecurity Junior Penetration Tester certification',
         key: 'ejptv2'
+    },
+    {
+        id: 2,
+        title: 'Systems Information Engineering',
+        shortTitle: 'Bachelor\'s Degree',
+        date: '2026',
+        status: 'completed',
+        type: 'degree',
+        description: 'Information Systems Engineering from Universidad de Alcalá',
+        key: 'tfg'
     },
     {
         id: 3,
@@ -66,16 +66,26 @@ const roadmapData = [
     },
     {
         id: 7,
+        title: 'eWPT',
+        shortTitle: 'eWPT',
+        date: 'Summer 2027',
+        status: 'planned',
+        type: 'certification',
+        description: 'Web Application Penetration Tester',
+        key: 'ewpt'
+    },
+    {
+        id: 8,
         title: 'eWPTx',
         shortTitle: 'eWPTx',
-        date: 'Summer 2027',
+        date: 'Summer 2028',
         status: 'planned',
         type: 'certification',
         description: 'Web Application Penetration Tester eXtreme',
         key: 'ewptx'
     },
     {
-        id: 8,
+        id: 9,
         title: 'OSCP',
         shortTitle: 'OSCP',
         date: '2028-2029',

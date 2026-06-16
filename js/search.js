@@ -10,6 +10,7 @@ const searchableContent = [
     { term: 'eJPTv2', section: 2, desc: 'Junior penetration tester certification (completed)' },
     { term: 'eCPPT', section: 2, desc: 'Penetration testing certification' },
     { term: 'OSCP', section: 2, desc: 'Offensive security certification' },
+    { term: 'eWPT', section: 2, desc: 'Web application security certification' },
     { term: 'eWPTx', section: 2, desc: 'Web application security certification' },
     { term: 'Modbus', section: 3, desc: 'Industrial protocol research' },
     { term: 'S7comm', section: 3, desc: 'Siemens protocol analysis' },
