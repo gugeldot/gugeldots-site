@@ -44,6 +44,10 @@
                         <button class="cta-button primary" onclick="scrollToSection(1)">Explore My Work</button>
                         <button class="cta-button" onclick="openCVModal()">View CV</button>
                     </div>
+                    <div class="claude-badge">
+                        <span>Created with Claude</span>
+                        <img src="resources/claude.png" alt="Claude AI" class="claude-icon">
+                    </div>
                 </div>
             </section>
 
@@ -180,13 +184,25 @@
             <section class="section">
                 <div class="contact-container">
                     <h2>Get In Touch</h2>
+                    <div class="heart-container">
+                        <div class="heart"></div>
+                    </div>
                     <p style="color: var(--text-secondary); font-size: 1.2rem; margin-bottom: 2rem;">
                         Interested in collaboration or have questions? Let's connect.
                     </p>
                     <div class="contact-links">
-                        <a href="mailto:gugeldot23@gmail.com" class="contact-link">📧 Email</a>
-                        <a href="https://github.com/gugeldot" class="contact-link" target="_blank">🔗 GitHub</a>
-                        <a href="https://linkedin.com/in/rodrigo-palomo-cuenca" class="contact-link" target="_blank">💼 LinkedIn</a>
+                        <a href="mailto:gugeldot23@gmail.com" class="contact-link">
+                            <img src="resources/gmail.webp" alt="Gmail" class="contact-icon">
+                            <span>Email</span>
+                        </a>
+                        <a href="https://github.com/gugeldot" class="contact-link" target="_blank">
+                            <img src="resources/github.webp" alt="GitHub" class="contact-icon">
+                            <span>GitHub</span>
+                        </a>
+                        <a href="https://linkedin.com/in/rodrigo-palomo-cuenca" class="contact-link" target="_blank">
+                            <img src="resources/linkedin.webp" alt="LinkedIn" class="contact-icon">
+                            <span>LinkedIn</span>
+                        </a>
                     </div>
                     <p style="color: var(--text-secondary); margin-top: 3rem; font-size: 0.9rem;">
                         © 2026 Rodrigo Palomo Cuenca<br>
@@ -198,9 +214,13 @@
 
         <!-- Search Container -->
         <div class="search-container">
-            <input type="text" class="search-box" placeholder="🔍 Search portfolio..." id="searchInput" autocomplete="off">
+            <input type="text" class="search-box" placeholder="Search in Portfolio" id="searchInput" autocomplete="off">
             <div class="search-results" id="searchResults"></div>
         </div>
+
+        <!-- Duck Image (appears on contact section) -->
+        <img src="resources/duck.png" alt="Duck" class="duck-image" id="duckImage">
+
     </div>
 
     <!-- Sidebar Modal -->

@@ -10,6 +10,27 @@ function scrollToSection(index) {
     const container = document.getElementById('scrollContainer');
     container.style.transform = `translateX(-${index * 100}vw)`;
     updateNavDots();
+    updateDuckVisibility();
+}
+
+let duckTimeout;
+
+function updateDuckVisibility() {
+    const duckImage = document.getElementById('duckImage');
+
+    // Clear any existing timeout
+    if (duckTimeout) {
+        clearTimeout(duckTimeout);
+    }
+
+    // Section 4 is the Contact section (0-indexed: Home=0, About=1, Roadmap=2, Projects=3, Contact=4)
+    if (currentSection === 4) {
+        duckTimeout = setTimeout(() => {
+            duckImage.classList.add('visible');
+        }, 1000);
+    } else {
+        duckImage.classList.remove('visible');
+    }
 }
 
 function updateNavDots() {

@@ -730,13 +730,24 @@ body::before {
     transition: all 0.3s;
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 1rem;
 }
 
 .contact-link:hover {
     transform: scale(1.05);
     box-shadow: 0 8px 25px rgba(90, 24, 154, 0.3);
     border-color: var(--purple-accent);
+}
+
+.contact-icon {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+.contact-link:hover .contact-icon {
+    transform: scale(1.1);
 }
 
 /* ==========================================================================
@@ -1052,6 +1063,36 @@ body::before {
     box-shadow: 0 20px 60px rgba(114, 9, 183, 0.4);
 }
 
+@media (max-width: 480px) {
+    .mobile-warning-content {
+        padding: 1.5rem;
+        max-width: 90%;
+        margin: 0.5rem;
+    }
+
+    .mobile-warning-icon {
+        font-size: 3rem;
+    }
+
+    .mobile-warning-content h2 {
+        font-size: 1.4rem;
+    }
+
+    .mobile-warning-content p {
+        font-size: 0.9rem;
+    }
+
+    .mobile-warning-recommendations {
+        padding: 1rem;
+        font-size: 0.85rem;
+    }
+
+    .mobile-warning-btn {
+        padding: 0.6rem 1rem;
+        font-size: 0.9rem;
+    }
+}
+
 .mobile-warning-icon {
     font-size: 4rem;
     margin-bottom: 1rem;
@@ -1211,4 +1252,146 @@ body::before {
 
 ::-webkit-scrollbar-thumb:hover {
     background: var(--purple-deep);
+}
+
+/* ==========================================================================
+   Claude Badge
+   ========================================================================== */
+
+.claude-badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    margin-top: 1rem;
+    position: relative;
+}
+
+.claude-badge::before {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--purple-accent));
+    box-shadow: 0 0 8px rgba(114, 9, 183, 0.5);
+}
+
+.claude-badge span {
+    color: var(--text-primary);
+    font-size: 0.75rem;
+    font-weight: 400;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    opacity: 0.9;
+}
+
+.claude-icon {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+    animation: claudePulse 2s ease-in-out infinite;
+    filter: drop-shadow(0 0 8px rgba(114, 9, 183, 0.7));
+}
+
+@keyframes claudePulse {
+    0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.7;
+        transform: scale(1.1);
+    }
+}
+
+/* ==========================================================================
+   Duck Image (Contact Section)
+   ========================================================================== */
+
+.duck-image {
+    position: fixed;
+    bottom: -400px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 300px;
+    height: auto;
+    z-index: 500;
+    transition: bottom 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55), opacity 0.5s ease;
+    pointer-events: none;
+    opacity: 0;
+}
+
+.duck-image.visible {
+    bottom: 60px;
+    opacity: 1;
+}
+
+@media (max-width: 768px) {
+    .duck-image {
+        width: 200px;
+        bottom: -300px;
+    }
+
+    .duck-image.visible {
+        bottom: 80px;
+    }
+}
+
+/* ==========================================================================
+   Heart Animation (Contact Section)
+   ========================================================================== */
+
+.heart-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+}
+
+.heart {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    animation: heartbeat 1.5s ease-in-out infinite;
+}
+
+.heart::before,
+.heart::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 26px;
+    height: 42px;
+    background: var(--purple-accent);
+    border-radius: 26px 26px 0 0;
+    box-shadow: 0 0 20px rgba(114, 9, 183, 0.6),
+                0 0 30px rgba(157, 78, 221, 0.4);
+}
+
+.heart::before {
+    left: 25px;
+    transform: rotate(-45deg);
+    transform-origin: 0 100%;
+}
+
+.heart::after {
+    left: 0;
+    transform: rotate(45deg);
+    transform-origin: 100% 100%;
+}
+
+@keyframes heartbeat {
+    0%, 100% {
+        transform: scale(1);
+    }
+    10% {
+        transform: scale(1.1);
+    }
+    20% {
+        transform: scale(1);
+    }
+    30% {
+        transform: scale(1.2);
+    }
+    40%, 60% {
+        transform: scale(1);
+    }
 }
