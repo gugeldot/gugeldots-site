@@ -25,7 +25,7 @@ const searchableContent = [
     { term: 'Azure', section: 2, desc: 'Cloud certification planned' },
     { term: 'AWS', section: 2, desc: 'Cloud certification planned' },
     { term: 'ISO 27001', section: 2, desc: 'Security management certification' },
-    { term: 'HackTheBox', section: 3, desc: '100+ rooted machines • Master Grade 1 Rank' },
+    { term: 'HackTheBox', section: 3, desc: '+120 rooted machines • Master Grade II Rank' },
     { term: 'TryHackMe', section: 3, desc: 'Level Master • Top 3% • 180+ rooms' },
 ];
 
