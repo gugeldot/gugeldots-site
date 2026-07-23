@@ -102,13 +102,19 @@ function initRoadmap() {
 
     if (!roadmapSvg || !checkpointsContainer) return;
 
-    // Calculate path based on number of items
-    const pathData = generateSinuousPath(roadmapData.length);
+    // Detect mobile
+    const isMobile = window.isMobileDevice ? window.isMobileDevice() : window.innerWidth <= 768;
+
+    // Calculate path based on number of items and layout
+    const pathData = isMobile ? generateVerticalPath(roadmapData.length) : generateSinuousPath(roadmapData.length);
+
+    // Gradient direction changes for mobile (vertical)
+    const gradientAttrs = isMobile ? 'x1="0%" y1="0%" x2="0%" y2="100%"' : 'x1="0%" y1="0%" x2="100%" y2="0%"';
 
     // Create SVG with gradient definition and path
     roadmapSvg.innerHTML = `
         <defs>
-            <linearGradient id="pathGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+            <linearGradient id="pathGradient" ${gradientAttrs}>
                 <stop offset="0%" style="stop-color:#4caf50;stop-opacity:0.8" />
                 <stop offset="30%" style="stop-color:#ffc107;stop-opacity:0.8" />
                 <stop offset="60%" style="stop-color:#7209b7;stop-opacity:0.6" />
@@ -123,6 +129,51 @@ function initRoadmap() {
         const checkpoint = createCheckpoint(item, index, roadmapData.length);
         checkpointsContainer.appendChild(checkpoint);
     });
+
+    // Re-initialize on resize (for mobile/desktop switch)
+    let resizeTimeout;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+            // Clear and re-render
+            const newIsMobile = window.isMobileDevice ? window.isMobileDevice() : window.innerWidth <= 768;
+            if (newIsMobile !== isMobile) {
+                checkpointsContainer.innerHTML = '';
+                initRoadmap();
+            }
+        }, 250);
+    });
+}
+
+function generateVerticalPath(itemCount) {
+    const points = [];
+    const containerWidth = 300; // Narrower for mobile
+    const containerHeight = 800; // Taller for mobile
+    const spacing = containerHeight / (itemCount - 1);
+
+    for (let i = 0; i < itemCount; i++) {
+        const x = containerWidth / 2; // Center horizontally
+        const y = i * spacing;
+        points.push({ x, y });
+    }
+
+    // Create smooth SVG path
+    let path = `M ${points[0].x} ${points[0].y}`;
+
+    for (let i = 1; i < points.length; i++) {
+        const prev = points[i - 1];
+        const curr = points[i];
+
+        // Control points for smooth vertical line
+        const cp1x = prev.x;
+        const cp1y = prev.y + (curr.y - prev.y) / 3;
+        const cp2x = curr.x;
+        const cp2y = prev.y + (2 * (curr.y - prev.y)) / 3;
+
+        path += ` C ${cp1x} ${cp1y}, ${cp2x} ${cp2y}, ${curr.x} ${curr.y}`;
+    }
+
+    return path;
 }
 
 function generateSinuousPath(itemCount) {
@@ -162,15 +213,32 @@ function createCheckpoint(item, index, total) {
     checkpoint.classList.add('roadmap-checkpoint');
     checkpoint.classList.add(`status-${item.status}`);
 
-    // Calculate position along sinuous path
-    const containerWidth = 1200;
-    const containerHeight = 400;
-    const spacing = containerWidth / (total - 1);
-    const x = index * spacing;
-    const y = containerHeight / 2 + Math.sin(index * 0.8) * 80;
+    // Detect mobile
+    const isMobile = window.isMobileDevice ? window.isMobileDevice() : window.innerWidth <= 768;
 
-    checkpoint.style.left = `${(x / containerWidth) * 100}%`;
-    checkpoint.style.top = `${(y / containerHeight) * 100}%`;
+    // Calculate position along path
+    let x, y;
+    if (isMobile) {
+        // Vertical layout for mobile
+        const containerWidth = 300;
+        const containerHeight = 800;
+        const spacing = containerHeight / (total - 1);
+        x = containerWidth / 2;
+        y = index * spacing;
+
+        checkpoint.style.left = `${(x / containerWidth) * 100}%`;
+        checkpoint.style.top = `${(y / containerHeight) * 100}%`;
+    } else {
+        // Sinuous layout for desktop
+        const containerWidth = 1200;
+        const containerHeight = 400;
+        const spacing = containerWidth / (total - 1);
+        x = index * spacing;
+        y = containerHeight / 2 + Math.sin(index * 0.8) * 80;
+
+        checkpoint.style.left = `${(x / containerWidth) * 100}%`;
+        checkpoint.style.top = `${(y / containerHeight) * 100}%`;
+    }
 
     // Status icon
     let statusIcon = '';

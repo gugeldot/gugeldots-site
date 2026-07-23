@@ -89,6 +89,19 @@ function initKeyboardNav() {
 function initWheelNav() {
     let scrollTimeout;
     document.addEventListener('wheel', (e) => {
+        // Check if scrolling inside a scrollable container
+        const target = e.target;
+        const scrollableContainer = target.closest('.repos-grid, .roadmap-container, .section');
+
+        // If inside repos-grid or other scrollable containers, don't navigate sections
+        if (scrollableContainer && (
+            scrollableContainer.classList.contains('repos-grid') ||
+            (scrollableContainer.classList.contains('section') && scrollableContainer.scrollHeight > scrollableContainer.clientHeight)
+        )) {
+            // Let the container handle its own scroll
+            return;
+        }
+
         clearTimeout(scrollTimeout);
         scrollTimeout = setTimeout(() => {
             if (e.deltaY > 0 && currentSection < totalSections - 1) {
