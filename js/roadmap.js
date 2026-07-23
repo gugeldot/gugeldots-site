@@ -112,6 +112,14 @@ function initRoadmap() {
     const gradientAttrs = isMobile ? 'x1="0%" y1="0%" x2="0%" y2="100%"' : 'x1="0%" y1="0%" x2="100%" y2="0%"';
     const strokeWidth = isMobile ? '6' : '4'; // Thicker line for mobile
 
+    // Update viewBox for mobile/desktop
+    if (isMobile) {
+        roadmapSvg.setAttribute('viewBox', '0 0 300 700');
+        console.log('Mobile roadmap path:', pathData);
+    } else {
+        roadmapSvg.setAttribute('viewBox', '0 0 1200 400');
+    }
+
     // Create SVG with gradient definition and path
     roadmapSvg.innerHTML = `
         <defs>

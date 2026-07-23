@@ -1288,22 +1288,6 @@ body.mobile-layout .section:first-child {
     padding: 4rem 1.5rem;
 }
 
-/* Separadores visuales entre secciones */
-body.mobile-layout .section::after {
-    content: '';
-    display: block;
-    width: 60px;
-    height: 3px;
-    background: linear-gradient(90deg, var(--purple-accent), var(--purple-deep));
-    margin: 3rem auto 0;
-    border-radius: 2px;
-    opacity: 0.5;
-}
-
-body.mobile-layout .section:last-child::after {
-    display: none;
-}
-
 /* Navigation dots for mobile - vertical layout */
 body.mobile-layout .nav-dots {
     right: 0.75rem;
@@ -1423,6 +1407,7 @@ body.mobile-layout .roadmap-svg {
     width: 300px !important;
     height: 700px !important;
     z-index: 1;
+    pointer-events: none;
 }
 
 body.mobile-layout .roadmap-checkpoints {
@@ -1432,19 +1417,19 @@ body.mobile-layout .roadmap-checkpoints {
     transform: translateX(-50%);
     width: 300px;
     height: 700px;
-    z-index: 2;
+    z-index: 10;
 }
 
 body.mobile-layout .roadmap-checkpoint {
     transform: translate(-50%, -50%);
+    z-index: 10;
 }
 
 body.mobile-layout .checkpoint-marker {
     width: 45px;
     height: 45px;
     font-size: 1.2rem;
-    background: var(--bg-primary);
-    z-index: 3;
+    z-index: 12;
     position: relative;
 }
 
@@ -1459,7 +1444,7 @@ body.mobile-layout .checkpoint-content {
     padding: 0.5rem 0.8rem;
     border-radius: 6px;
     border: 1px solid var(--purple-muted);
-    z-index: 3;
+    z-index: 12;
 }
 
 body.mobile-layout .checkpoint-title {
@@ -1678,20 +1663,6 @@ body.mobile-layout h2 {
     font-size: 2.2rem;
     margin-bottom: 2rem;
     text-align: center;
-    position: relative;
-    padding-bottom: 1rem;
-}
-
-body.mobile-layout h2::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 50px;
-    height: 3px;
-    background: var(--purple-accent);
-    border-radius: 2px;
 }
 
 body.mobile-layout h3 {
