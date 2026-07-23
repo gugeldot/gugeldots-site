@@ -16,6 +16,14 @@ const translations = {
 
         // Roadmap
         roadmapTitle: "Certification Roadmap",
+        roadmapNodes: {
+            "Bachelor's Degree": "Bachelor's Degree",
+            "Master's Degree": "Master's Degree",
+            "Azure & AWS": "Azure & AWS",
+            "Summer 2026": "Summer 2026",
+            "Summer 2027": "Summer 2027",
+            "Summer 2028": "Summer 2028"
+        },
 
         // Projects
         projectsTitle: "Academic & Research Projects",
@@ -50,6 +58,14 @@ const translations = {
 
         // Roadmap
         roadmapTitle: "Hoja de Ruta de Certificaciones",
+        roadmapNodes: {
+            "Bachelor's Degree": "Grado",
+            "Master's Degree": "Máster",
+            "Azure & AWS": "Azure y AWS",
+            "Summer 2026": "Verano 2026",
+            "Summer 2027": "Verano 2027",
+            "Summer 2028": "Verano 2028"
+        },
 
         // Projects
         projectsTitle: "Proyectos Académicos e Investigación",
@@ -126,6 +142,7 @@ const sidebarTranslations = {
             title: "Bachelor's Thesis: BadUSB Analysis",
             content: `
                 <h3>Universidad de Alcalá | 2026</h3>
+                <p><strong>Grade:</strong> 10/10 (Honors)</p>
                 <p>Comprehensive research on HID emulation devices analyzing attack vectors and mitigation strategies.</p>
                 <h3>Research Focus</h3>
                 <p>• Attack vector analysis<br>• Firmware reverse engineering<br>• Detection mechanisms<br>• Behavioral analysis<br>• Mitigation strategies</p>
@@ -216,6 +233,7 @@ const sidebarTranslations = {
             title: "TFG: Análisis de BadUSB",
             content: `
                 <h3>Universidad de Alcalá | 2026</h3>
+                <p><strong>Calificación:</strong> 10/10 (Matrícula de Honor)</p>
                 <p>Investigación exhaustiva sobre dispositivos de emulación HID analizando vectores de ataque y estrategias de mitigación.</p>
                 <h3>Enfoque de Investigación</h3>
                 <p>• Análisis de vectores de ataque<br>• Ingeniería inversa de firmware<br>• Mecanismos de detección<br>• Análisis de comportamiento<br>• Estrategias de mitigación</p>
@@ -322,6 +340,24 @@ function updateAboutSection(t) {
 function updateRoadmapSection(t) {
     const roadmapTitle = document.querySelector('.roadmap-wrapper h2');
     if (roadmapTitle) roadmapTitle.textContent = t.roadmapTitle;
+
+    // Update roadmap node titles
+    const checkpointTitles = document.querySelectorAll('.checkpoint-title');
+    checkpointTitles.forEach(title => {
+        const originalText = title.textContent.trim();
+        if (t.roadmapNodes[originalText]) {
+            title.textContent = t.roadmapNodes[originalText];
+        }
+    });
+
+    // Update roadmap node dates
+    const checkpointDates = document.querySelectorAll('.checkpoint-date');
+    checkpointDates.forEach(date => {
+        const originalText = date.textContent.trim();
+        if (t.roadmapNodes[originalText]) {
+            date.textContent = t.roadmapNodes[originalText];
+        }
+    });
 }
 
 function updateProjectsSection(t) {
