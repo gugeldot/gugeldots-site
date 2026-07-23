@@ -1378,7 +1378,7 @@ body.mobile-layout .skill-card p {
     line-height: 1.5;
 }
 
-/* Roadmap mobile - Vertical layout */
+/* Roadmap mobile - Vertical layout centered */
 body.mobile-layout .roadmap-wrapper {
     overflow: visible;
     display: flex;
@@ -1393,67 +1393,89 @@ body.mobile-layout .roadmap-wrapper h2 {
 body.mobile-layout .roadmap-container {
     position: relative;
     width: 100%;
-    max-width: 400px;
-    height: 700px;
-    padding: 2rem 1rem;
+    max-width: 100%;
+    height: auto;
+    padding: 1rem;
     overflow: visible;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2.5rem;
 }
 
+/* Ocultar SVG en móvil (no funciona) */
 body.mobile-layout .roadmap-svg {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 300px !important;
-    height: 700px !important;
-    z-index: 1;
-    pointer-events: none;
+    display: none;
 }
 
 body.mobile-layout .roadmap-checkpoints {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 300px;
-    height: 700px;
-    z-index: 10;
+    position: relative;
+    width: 100%;
+    max-width: 350px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2.5rem;
 }
 
 body.mobile-layout .roadmap-checkpoint {
-    transform: translate(-50%, -50%);
-    z-index: 10;
+    position: relative;
+    transform: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+/* Línea conectora con ::before */
+body.mobile-layout .roadmap-checkpoint::before {
+    content: '';
+    position: absolute;
+    top: -2.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 2.5rem;
+    background: linear-gradient(to bottom, var(--purple-muted), var(--purple-deep));
+    opacity: 0.6;
+}
+
+body.mobile-layout .roadmap-checkpoint:first-child::before {
+    display: none;
 }
 
 body.mobile-layout .checkpoint-marker {
-    width: 45px;
-    height: 45px;
-    font-size: 1.2rem;
-    z-index: 12;
+    width: 50px;
+    height: 50px;
+    font-size: 1.3rem;
     position: relative;
 }
 
 body.mobile-layout .checkpoint-content {
-    position: absolute;
-    top: 50%;
-    left: 70px;
-    transform: translateY(-50%);
-    text-align: left;
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none;
+    text-align: center;
     white-space: nowrap;
-    background: var(--bg-primary);
-    padding: 0.5rem 0.8rem;
-    border-radius: 6px;
-    border: 1px solid var(--purple-muted);
-    z-index: 12;
+    background: transparent;
+    padding: 0.8rem 1rem;
+    border-radius: 0;
+    border: none;
+    margin-top: 0.5rem;
 }
 
 body.mobile-layout .checkpoint-title {
-    font-size: 0.9rem;
+    font-size: 1rem;
     font-weight: 600;
+    color: var(--text-primary);
 }
 
 body.mobile-layout .checkpoint-date {
-    font-size: 0.75rem;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    margin-top: 0.2rem;
 }
 
 /* Projects section mobile - Natural flow */

@@ -5,7 +5,8 @@
       "Bash(curl -s \"https://api.github.com/users/gugeldot/repos?per_page=20&sort=updated\")",
       "Bash(cat)",
       "Bash(chmod +x /tmp/test-mobile.sh)",
-      "Bash(/tmp/test-mobile.sh)"
+      "Bash(/tmp/test-mobile.sh)",
+      "Bash(node --check js/roadmap.js)"
     ]
   }
 }
