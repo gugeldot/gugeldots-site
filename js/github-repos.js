@@ -124,36 +124,6 @@ function initGitHubRepos() {
     });
 
     fetchGitHubData();
-
-    // Prevent scroll propagation on mobile
-    preventScrollPropagation();
-}
-
-// Prevent scroll propagation in repos grid (mobile)
-function preventScrollPropagation() {
-    const reposGrid = document.getElementById('reposGrid');
-    if (!reposGrid) return;
-
-    let isScrolling = false;
-
-    reposGrid.addEventListener('touchstart', () => {
-        isScrolling = false;
-    }, { passive: true });
-
-    reposGrid.addEventListener('touchmove', (e) => {
-        const el = reposGrid;
-        const isAtTop = el.scrollTop === 0;
-        const isAtBottom = el.scrollTop + el.clientHeight >= el.scrollHeight;
-
-        // Only allow scroll within the element
-        if (!isAtTop && !isAtBottom) {
-            isScrolling = true;
-        }
-    }, { passive: true });
-
-    reposGrid.addEventListener('scroll', () => {
-        isScrolling = true;
-    }, { passive: true });
 }
 
 // Initialize when DOM is ready

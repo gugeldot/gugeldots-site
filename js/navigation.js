@@ -11,10 +11,13 @@ function scrollToSection(index) {
     const isMobile = window.isMobileDevice ? window.isMobileDevice() : window.innerWidth <= 768;
 
     if (isMobile) {
-        // Mobile: vertical scroll
-        container.style.transform = `translateY(-${index * 100}vh)`;
+        // Mobile: scroll to section naturally (no fixed pages)
+        const sections = document.querySelectorAll('.section');
+        if (sections[index]) {
+            sections[index].scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
     } else {
-        // Desktop: horizontal scroll
+        // Desktop: horizontal scroll with transform
         container.style.transform = `translateX(-${index * 100}vw)`;
     }
 
@@ -62,21 +65,15 @@ function initKeyboardNav() {
     document.addEventListener('keydown', (e) => {
         const isMobile = window.isMobileDevice ? window.isMobileDevice() : window.innerWidth <= 768;
 
-        if (isMobile) {
-            // Mobile: up/down arrow keys
-            if (e.key === 'ArrowDown' && currentSection < totalSections - 1) {
-                scrollToSection(currentSection + 1);
-            } else if (e.key === 'ArrowUp' && currentSection > 0) {
-                scrollToSection(currentSection - 1);
-            }
-        } else {
-            // Desktop: left/right arrow keys
+        if (!isMobile) {
+            // Desktop only: left/right arrow keys
             if (e.key === 'ArrowRight' && currentSection < totalSections - 1) {
                 scrollToSection(currentSection + 1);
             } else if (e.key === 'ArrowLeft' && currentSection > 0) {
                 scrollToSection(currentSection - 1);
             }
         }
+        // Mobile uses native scroll, no keyboard navigation needed
 
         if (e.key === 'Escape') {
             closeSidebar();
@@ -87,21 +84,16 @@ function initKeyboardNav() {
 
 // Wheel navigation
 function initWheelNav() {
+    const isMobile = window.isMobileDevice ? window.isMobileDevice() : window.innerWidth <= 768;
+
+    // Skip wheel navigation for mobile (use native scroll)
+    if (isMobile) {
+        return;
+    }
+
+    // Desktop wheel navigation only
     let scrollTimeout;
     document.addEventListener('wheel', (e) => {
-        // Check if scrolling inside a scrollable container
-        const target = e.target;
-        const scrollableContainer = target.closest('.repos-grid, .roadmap-container, .section');
-
-        // If inside repos-grid or other scrollable containers, don't navigate sections
-        if (scrollableContainer && (
-            scrollableContainer.classList.contains('repos-grid') ||
-            (scrollableContainer.classList.contains('section') && scrollableContainer.scrollHeight > scrollableContainer.clientHeight)
-        )) {
-            // Let the container handle its own scroll
-            return;
-        }
-
         clearTimeout(scrollTimeout);
         scrollTimeout = setTimeout(() => {
             if (e.deltaY > 0 && currentSection < totalSections - 1) {
@@ -115,54 +107,80 @@ function initWheelNav() {
 
 // Touch navigation for mobile
 function initTouchNav() {
-    let touchStartY = 0;
+    const isMobile = window.isMobileDevice ? window.isMobileDevice() : window.innerWidth <= 768;
+
+    // Skip touch navigation for mobile (use native scroll)
+    if (isMobile) {
+        return;
+    }
+
+    // Desktop touch navigation only
     let touchStartX = 0;
-    let touchEndY = 0;
     let touchEndX = 0;
 
     const scrollContainer = document.getElementById('scrollContainer');
 
     scrollContainer.addEventListener('touchstart', (e) => {
-        touchStartY = e.changedTouches[0].screenY;
         touchStartX = e.changedTouches[0].screenX;
     }, { passive: true });
 
     scrollContainer.addEventListener('touchend', (e) => {
-        touchEndY = e.changedTouches[0].screenY;
         touchEndX = e.changedTouches[0].screenX;
         handleSwipe();
     }, { passive: true });
 
     function handleSwipe() {
-        const isMobile = window.isMobileDevice ? window.isMobileDevice() : window.innerWidth <= 768;
-        const diffY = touchStartY - touchEndY;
         const diffX = touchStartX - touchEndX;
         const minSwipeDistance = 50;
 
-        if (isMobile) {
-            // Mobile: vertical swipe
-            if (Math.abs(diffY) > minSwipeDistance) {
-                if (diffY > 0 && currentSection < totalSections - 1) {
-                    // Swipe up - go to next section
-                    scrollToSection(currentSection + 1);
-                } else if (diffY < 0 && currentSection > 0) {
-                    // Swipe down - go to previous section
-                    scrollToSection(currentSection - 1);
-                }
-            }
-        } else {
-            // Desktop: horizontal swipe (for touchscreen laptops)
-            if (Math.abs(diffX) > minSwipeDistance) {
-                if (diffX > 0 && currentSection < totalSections - 1) {
-                    // Swipe left - go to next section
-                    scrollToSection(currentSection + 1);
-                } else if (diffX < 0 && currentSection > 0) {
-                    // Swipe right - go to previous section
-                    scrollToSection(currentSection - 1);
-                }
+        // Desktop: horizontal swipe only
+        if (Math.abs(diffX) > minSwipeDistance) {
+            if (diffX > 0 && currentSection < totalSections - 1) {
+                scrollToSection(currentSection + 1);
+            } else if (diffX < 0 && currentSection > 0) {
+                scrollToSection(currentSection - 1);
             }
         }
     }
+}
+
+// Scroll spy for mobile continuous scroll
+function initScrollSpy() {
+    const isMobile = window.isMobileDevice ? window.isMobileDevice() : window.innerWidth <= 768;
+
+    if (!isMobile) {
+        return; // Only for mobile
+    }
+
+    let ticking = false;
+
+    window.addEventListener('scroll', () => {
+        if (!ticking) {
+            window.requestAnimationFrame(() => {
+                updateCurrentSectionFromScroll();
+                ticking = false;
+            });
+            ticking = true;
+        }
+    }, { passive: true });
+}
+
+function updateCurrentSectionFromScroll() {
+    const sections = document.querySelectorAll('.section');
+    const scrollPosition = window.scrollY + window.innerHeight / 2;
+
+    sections.forEach((section, index) => {
+        const sectionTop = section.offsetTop;
+        const sectionBottom = sectionTop + section.offsetHeight;
+
+        if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+            if (currentSection !== index) {
+                currentSection = index;
+                updateNavDots();
+                updateDuckVisibility();
+            }
+        }
+    });
 }
 
 // Initialize all navigation
@@ -171,4 +189,5 @@ function initNavigation() {
     initKeyboardNav();
     initWheelNav();
     initTouchNav();
+    initScrollSpy();
 }

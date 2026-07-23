@@ -146,34 +146,17 @@ function initRoadmap() {
 }
 
 function generateVerticalPath(itemCount) {
-    const points = [];
     const containerWidth = 300; // Narrower for mobile
-    const containerHeight = 800; // Taller for mobile
+    const containerHeight = 600; // Height for mobile
     const spacing = containerHeight / (itemCount - 1);
 
-    for (let i = 0; i < itemCount; i++) {
-        const x = containerWidth / 2; // Center horizontally
-        const y = i * spacing;
-        points.push({ x, y });
-    }
+    // Simple straight vertical line from top to bottom
+    const x = containerWidth / 2; // Center horizontally
+    const startY = 0;
+    const endY = containerHeight;
 
-    // Create smooth SVG path
-    let path = `M ${points[0].x} ${points[0].y}`;
-
-    for (let i = 1; i < points.length; i++) {
-        const prev = points[i - 1];
-        const curr = points[i];
-
-        // Control points for smooth vertical line
-        const cp1x = prev.x;
-        const cp1y = prev.y + (curr.y - prev.y) / 3;
-        const cp2x = curr.x;
-        const cp2y = prev.y + (2 * (curr.y - prev.y)) / 3;
-
-        path += ` C ${cp1x} ${cp1y}, ${cp2x} ${cp2y}, ${curr.x} ${curr.y}`;
-    }
-
-    return path;
+    // Straight line path
+    return `M ${x} ${startY} L ${x} ${endY}`;
 }
 
 function generateSinuousPath(itemCount) {
@@ -219,9 +202,9 @@ function createCheckpoint(item, index, total) {
     // Calculate position along path
     let x, y;
     if (isMobile) {
-        // Vertical layout for mobile
+        // Vertical layout for mobile - straight line
         const containerWidth = 300;
-        const containerHeight = 800;
+        const containerHeight = 600;
         const spacing = containerHeight / (total - 1);
         x = containerWidth / 2;
         y = index * spacing;
