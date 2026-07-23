@@ -317,7 +317,18 @@ function updateLanguage() {
 function updateSearchSection(t) {
     const searchInput = document.getElementById('searchInput');
     if (searchInput) {
-        searchInput.setAttribute('placeholder', t.searchPlaceholder);
+        const searchContainer = searchInput.closest('.search-container');
+
+        // Si el search box está expandido (hover o focus), actualizar placeholder
+        if (searchContainer && (searchContainer.classList.contains('expanded') || searchInput.matches(':focus'))) {
+            searchInput.setAttribute('placeholder', t.searchPlaceholder);
+        } else {
+            // Si está colapsado, dejarlo vacío (se actualizará cuando se expanda)
+            searchInput.placeholder = '';
+        }
+
+        // Guardar el placeholder traducido para cuando se expanda
+        searchInput.dataset.placeholderText = t.searchPlaceholder;
     }
 }
 

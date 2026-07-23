@@ -53,12 +53,15 @@ function initSearch() {
     const searchInput = document.getElementById('searchInput');
     const searchResults = document.getElementById('searchResults');
     const searchContainer = searchInput.closest('.search-container');
-    const placeholderText = 'Search in Portfolio';
+    const defaultPlaceholder = 'Search in Portfolio';
 
     searchInput.placeholder = '';
+    searchInput.dataset.placeholderText = defaultPlaceholder; // Store default
 
     searchContainer.addEventListener('mouseenter', () => {
         searchContainer.classList.add('expanded');
+        // Use translated placeholder if available
+        const placeholderText = searchInput.dataset.placeholderText || defaultPlaceholder;
         if (!isTyping && searchInput.placeholder !== placeholderText) {
             isTyping = true;
             if (typingInterval) clearInterval(typingInterval);
@@ -77,6 +80,8 @@ function initSearch() {
 
     searchInput.addEventListener('focus', () => {
         searchContainer.classList.add('expanded');
+        // Use translated placeholder if available
+        const placeholderText = searchInput.dataset.placeholderText || defaultPlaceholder;
         // Si está escribiendo, completar el texto inmediatamente
         if (isTyping) {
             if (typingInterval) clearInterval(typingInterval);
