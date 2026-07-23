@@ -26,5 +26,3 @@ build/
 # Private documents (CVs, academic papers)
 docs/
 *.pdf
-/.claude
-.claude/settings.local.json
