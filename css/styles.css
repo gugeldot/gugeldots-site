@@ -1426,13 +1426,17 @@ body.mobile-layout .roadmap-checkpoints {
 }
 
 body.mobile-layout .roadmap-checkpoint {
-    position: relative;
-    transform: none;
+    position: relative !important;
+    transform: none !important;
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
     max-width: 280px;
+    left: auto !important;
+    top: auto !important;
+    right: auto !important;
+    bottom: auto !important;
 }
 
 /* Línea conectora con ::before */
