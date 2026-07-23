@@ -110,18 +110,19 @@ function initRoadmap() {
 
     // Gradient direction changes for mobile (vertical)
     const gradientAttrs = isMobile ? 'x1="0%" y1="0%" x2="0%" y2="100%"' : 'x1="0%" y1="0%" x2="100%" y2="0%"';
+    const strokeWidth = isMobile ? '6' : '4'; // Thicker line for mobile
 
     // Create SVG with gradient definition and path
     roadmapSvg.innerHTML = `
         <defs>
             <linearGradient id="pathGradient" ${gradientAttrs}>
-                <stop offset="0%" style="stop-color:#4caf50;stop-opacity:0.8" />
-                <stop offset="30%" style="stop-color:#ffc107;stop-opacity:0.8" />
-                <stop offset="60%" style="stop-color:#7209b7;stop-opacity:0.6" />
-                <stop offset="100%" style="stop-color:#5a189a;stop-opacity:0.4" />
+                <stop offset="0%" style="stop-color:#4caf50;stop-opacity:1" />
+                <stop offset="30%" style="stop-color:#ffc107;stop-opacity:1" />
+                <stop offset="60%" style="stop-color:#7209b7;stop-opacity:0.9" />
+                <stop offset="100%" style="stop-color:#5a189a;stop-opacity:0.8" />
             </linearGradient>
         </defs>
-        <path d="${pathData}" stroke="url(#pathGradient)" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="${pathData}" stroke="url(#pathGradient)" stroke-width="${strokeWidth}" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
     `;
 
     // Create checkpoints
@@ -146,14 +147,13 @@ function initRoadmap() {
 }
 
 function generateVerticalPath(itemCount) {
-    const containerWidth = 300; // Narrower for mobile
-    const containerHeight = 600; // Height for mobile
-    const spacing = containerHeight / (itemCount - 1);
+    const containerWidth = 300;
+    const containerHeight = 700;
 
     // Simple straight vertical line from top to bottom
-    const x = containerWidth / 2; // Center horizontally
-    const startY = 0;
-    const endY = containerHeight;
+    const x = containerWidth / 2; // Center horizontally (150)
+    const startY = 20; // Start with padding
+    const endY = containerHeight - 20; // End with padding
 
     // Straight line path
     return `M ${x} ${startY} L ${x} ${endY}`;
@@ -204,10 +204,12 @@ function createCheckpoint(item, index, total) {
     if (isMobile) {
         // Vertical layout for mobile - straight line
         const containerWidth = 300;
-        const containerHeight = 600;
-        const spacing = containerHeight / (total - 1);
+        const containerHeight = 700;
+        const padding = 20;
+        const usableHeight = containerHeight - (padding * 2);
+        const spacing = usableHeight / (total - 1);
         x = containerWidth / 2;
-        y = index * spacing;
+        y = padding + (index * spacing);
 
         checkpoint.style.left = `${(x / containerWidth) * 100}%`;
         checkpoint.style.top = `${(y / containerHeight) * 100}%`;
