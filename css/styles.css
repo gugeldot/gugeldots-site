@@ -2020,7 +2020,7 @@ body.mobile-layout .platform-badge {
    ========================================================================== */
 
 .language-toggle {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     gap: 0.5rem;
     background: var(--bg-secondary);
@@ -2030,6 +2030,7 @@ body.mobile-layout .platform-badge {
     margin-top: 1.5rem;
     cursor: pointer;
     transition: all 0.3s;
+    font-family: inherit;
 }
 
 .language-toggle:hover {
@@ -2042,19 +2043,22 @@ body.mobile-layout .platform-badge {
     font-size: 0.9rem;
     transition: all 0.3s;
     cursor: pointer;
+    user-select: none;
 }
 
 .lang-option.active {
     color: var(--purple-accent);
     font-weight: 600;
-    transform: scale(1.1);
+    transform: scale(1.05);
 }
 
 .lang-separator {
     color: var(--purple-muted);
     font-size: 0.9rem;
+    user-select: none;
 }
 
 body.mobile-layout .language-toggle {
+    display: flex;
     margin: 1.5rem auto 0;
 }

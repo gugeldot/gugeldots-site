@@ -169,13 +169,15 @@ function generateVerticalPath(itemCount) {
 
 function generateSinuousPath(itemCount) {
     const points = [];
-    const containerWidth = 1200; // Max width
-    const containerHeight = 400;
+    const containerWidth = 1200; // Max width (must match viewBox)
+    const containerHeight = 400;  // Max height (must match viewBox)
+
+    // Same spacing calculation as createCheckpoint
     const spacing = containerWidth / (itemCount - 1);
 
     for (let i = 0; i < itemCount; i++) {
         const x = i * spacing;
-        // Sinusoidal wave for vertical position
+        // EXACT same formula as createCheckpoint
         const y = containerHeight / 2 + Math.sin(i * 0.8) * 80;
         points.push({ x, y });
     }

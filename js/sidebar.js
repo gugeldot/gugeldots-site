@@ -193,7 +193,9 @@ function openSidebar(key) {
     const sidebar = document.getElementById('sidebarModal');
     const content = document.getElementById('sidebarContent');
     const mainWrapper = document.getElementById('mainWrapper');
-    const data = sidebarData[key];
+
+    // Try to get translated content first, fallback to original
+    const data = (window.getSidebarContent && window.getSidebarContent(key)) || sidebarData[key];
 
     if (data) {
         content.innerHTML = `<h2>${data.title}</h2>${data.content}`;
