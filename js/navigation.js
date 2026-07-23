@@ -8,7 +8,16 @@ const totalSections = 6;
 function scrollToSection(index) {
     currentSection = index;
     const container = document.getElementById('scrollContainer');
-    container.style.transform = `translateX(-${index * 100}vw)`;
+    const isMobile = window.isMobileDevice ? window.isMobileDevice() : window.innerWidth <= 768;
+
+    if (isMobile) {
+        // Mobile: vertical scroll
+        container.style.transform = `translateY(-${index * 100}vh)`;
+    } else {
+        // Desktop: horizontal scroll
+        container.style.transform = `translateX(-${index * 100}vw)`;
+    }
+
     updateNavDots();
     updateDuckVisibility();
 }
@@ -51,11 +60,25 @@ function initNavDots() {
 // Keyboard navigation
 function initKeyboardNav() {
     document.addEventListener('keydown', (e) => {
-        if (e.key === 'ArrowRight' && currentSection < totalSections - 1) {
-            scrollToSection(currentSection + 1);
-        } else if (e.key === 'ArrowLeft' && currentSection > 0) {
-            scrollToSection(currentSection - 1);
-        } else if (e.key === 'Escape') {
+        const isMobile = window.isMobileDevice ? window.isMobileDevice() : window.innerWidth <= 768;
+
+        if (isMobile) {
+            // Mobile: up/down arrow keys
+            if (e.key === 'ArrowDown' && currentSection < totalSections - 1) {
+                scrollToSection(currentSection + 1);
+            } else if (e.key === 'ArrowUp' && currentSection > 0) {
+                scrollToSection(currentSection - 1);
+            }
+        } else {
+            // Desktop: left/right arrow keys
+            if (e.key === 'ArrowRight' && currentSection < totalSections - 1) {
+                scrollToSection(currentSection + 1);
+            } else if (e.key === 'ArrowLeft' && currentSection > 0) {
+                scrollToSection(currentSection - 1);
+            }
+        }
+
+        if (e.key === 'Escape') {
             closeSidebar();
             closeCVModal();
         }
@@ -77,9 +100,62 @@ function initWheelNav() {
     }, { passive: true });
 }
 
+// Touch navigation for mobile
+function initTouchNav() {
+    let touchStartY = 0;
+    let touchStartX = 0;
+    let touchEndY = 0;
+    let touchEndX = 0;
+
+    const scrollContainer = document.getElementById('scrollContainer');
+
+    scrollContainer.addEventListener('touchstart', (e) => {
+        touchStartY = e.changedTouches[0].screenY;
+        touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    scrollContainer.addEventListener('touchend', (e) => {
+        touchEndY = e.changedTouches[0].screenY;
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+    }, { passive: true });
+
+    function handleSwipe() {
+        const isMobile = window.isMobileDevice ? window.isMobileDevice() : window.innerWidth <= 768;
+        const diffY = touchStartY - touchEndY;
+        const diffX = touchStartX - touchEndX;
+        const minSwipeDistance = 50;
+
+        if (isMobile) {
+            // Mobile: vertical swipe
+            if (Math.abs(diffY) > minSwipeDistance) {
+                if (diffY > 0 && currentSection < totalSections - 1) {
+                    // Swipe up - go to next section
+                    scrollToSection(currentSection + 1);
+                } else if (diffY < 0 && currentSection > 0) {
+                    // Swipe down - go to previous section
+                    scrollToSection(currentSection - 1);
+                }
+            }
+        } else {
+            // Desktop: horizontal swipe (for touchscreen laptops)
+            if (Math.abs(diffX) > minSwipeDistance) {
+                if (diffX > 0 && currentSection < totalSections - 1) {
+                    // Swipe left - go to next section
+                    scrollToSection(currentSection + 1);
+                } else if (diffX < 0 && currentSection > 0) {
+                    // Swipe right - go to previous section
+                    scrollToSection(currentSection - 1);
+                }
+            }
+        }
+    }
+}
+
 // Initialize all navigation
 function initNavigation() {
     initNavDots();
     initKeyboardNav();
     initWheelNav();
+    initTouchNav();
 }

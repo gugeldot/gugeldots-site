@@ -1,5 +1,5 @@
 // ==========================================================================
-// Mobile Detection & Warning Modal
+// Mobile Detection & Adaptive Layout
 // ==========================================================================
 
 function isMobileDevice() {
@@ -18,74 +18,56 @@ function isMobileDevice() {
     return isMobileScreen || isMobileUA || isTouchDevice;
 }
 
-function hasSeenMobileWarning() {
-    return localStorage.getItem('portfolioMobileWarningSeen') === 'true';
-}
+function applyMobileLayout() {
+    const body = document.body;
+    const mainWrapper = document.getElementById('mainWrapper');
+    const scrollContainer = document.getElementById('scrollContainer');
 
-function setMobileWarningSeen() {
-    localStorage.setItem('portfolioMobileWarningSeen', 'true');
-}
+    // Add mobile class to body for CSS targeting
+    body.classList.add('mobile-layout');
 
-function createMobileWarningModal() {
-    const modal = document.createElement('div');
-    modal.id = 'mobileWarningModal';
-    modal.className = 'mobile-warning-modal active';
-
-    modal.innerHTML = `
-        <div class="mobile-warning-content">
-            <div class="mobile-warning-icon">📱</div>
-            <h2>Mobile Device Detected</h2>
-            <p>This portfolio is optimized for <strong>desktop viewing</strong> to provide the best interactive experience.</p>
-            <p>Some features and animations may not display correctly on mobile devices.</p>
-            <div class="mobile-warning-recommendations">
-                <p><strong>For the best experience:</strong></p>
-                <ul>
-                    <li>View on a desktop or laptop computer</li>
-                    <li>Use landscape orientation if viewing on tablet</li>
-                    <li>Enable JavaScript for full functionality</li>
-                </ul>
-            </div>
-            <div class="mobile-warning-buttons">
-                <button class="mobile-warning-btn primary" onclick="closeMobileWarning(true)">
-                    Continue Anyway
-                </button>
-                <button class="mobile-warning-btn secondary" onclick="closeMobileWarning(false)">
-                    I Understand
-                </button>
-            </div>
-            <label class="mobile-warning-checkbox">
-                <input type="checkbox" id="dontShowAgain">
-                <span>Don't show this again</span>
-            </label>
-        </div>
-    `;
-
-    document.body.appendChild(modal);
-}
-
-function closeMobileWarning(dontShowAgain) {
-    const modal = document.getElementById('mobileWarningModal');
-    const checkbox = document.getElementById('dontShowAgain');
-
-    if (checkbox && checkbox.checked || dontShowAgain) {
-        setMobileWarningSeen();
+    // Change scroll container to vertical layout
+    if (scrollContainer) {
+        scrollContainer.classList.add('mobile-vertical');
     }
 
-    modal.classList.remove('active');
-    setTimeout(() => {
-        modal.remove();
-    }, 300);
+    console.log('Mobile layout applied');
+}
+
+function applyDesktopLayout() {
+    const body = document.body;
+    const scrollContainer = document.getElementById('scrollContainer');
+
+    body.classList.remove('mobile-layout');
+
+    if (scrollContainer) {
+        scrollContainer.classList.remove('mobile-vertical');
+    }
+
+    console.log('Desktop layout applied');
 }
 
 function initMobileDetection() {
-    // Only show if it's a mobile device and user hasn't seen the warning
-    if (isMobileDevice() && !hasSeenMobileWarning()) {
-        // Wait a bit for page to load
-        setTimeout(() => {
-            createMobileWarningModal();
-        }, 500);
+    // Apply appropriate layout on load
+    if (isMobileDevice()) {
+        applyMobileLayout();
+    } else {
+        applyDesktopLayout();
     }
+
+    // Handle orientation and resize changes
+    let resizeTimeout;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+            if (isMobileDevice()) {
+                applyMobileLayout();
+            } else {
+                applyDesktopLayout();
+            }
+        }, 250);
+    });
 }
 
-// Make closeMobileWarning globally accessible
-window.closeMobileWarning = closeMobileWarning;
+// Export for global access
+window.isMobileDevice = isMobileDevice;

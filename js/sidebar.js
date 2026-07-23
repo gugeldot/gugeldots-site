@@ -199,6 +199,11 @@ function openSidebar(key) {
         content.innerHTML = `<h2>${data.title}</h2>${data.content}`;
         sidebar.classList.add('active');
         mainWrapper.classList.add('sidebar-open');
+
+        // Prevent body scroll on mobile when sidebar is open
+        if (window.isMobileDevice && window.isMobileDevice()) {
+            document.body.style.overflow = 'hidden';
+        }
     }
 }
 
@@ -207,6 +212,9 @@ function closeSidebar() {
     const mainWrapper = document.getElementById('mainWrapper');
     sidebar.classList.remove('active');
     mainWrapper.classList.remove('sidebar-open');
+
+    // Restore body scroll
+    document.body.style.overflow = '';
 }
 
 // Close sidebar on outside click
