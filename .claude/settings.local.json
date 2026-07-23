@@ -6,7 +6,8 @@
       "Bash(cat)",
       "Bash(chmod +x /tmp/test-mobile.sh)",
       "Bash(/tmp/test-mobile.sh)",
-      "Bash(node --check js/roadmap.js)"
+      "Bash(node --check js/roadmap.js)",
+      "Bash(node --check js/language.js)"
     ]
   }
 }

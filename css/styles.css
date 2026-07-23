@@ -1389,10 +1389,11 @@ body.mobile-layout .roadmap-wrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-top: 3rem; /* Más espacio desde About */
 }
 
 body.mobile-layout .roadmap-wrapper h2 {
-    margin-bottom: 2rem;
+    margin-bottom: 3rem; /* Más espacio para el popup */
 }
 
 body.mobile-layout .roadmap-container {
@@ -1401,6 +1402,7 @@ body.mobile-layout .roadmap-container {
     max-width: 100%;
     height: auto;
     padding: 1rem;
+    padding-top: 3rem; /* Espacio extra arriba para tooltips */
     overflow: visible;
     display: flex;
     flex-direction: column;
@@ -2011,4 +2013,48 @@ body.mobile-layout .platform-badge {
         width: 8px;
         height: 8px;
     }
+}
+
+/* ==========================================================================
+   Language Toggle Button
+   ========================================================================== */
+
+.language-toggle {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--bg-secondary);
+    border: 1px solid var(--purple-muted);
+    border-radius: 25px;
+    padding: 0.6rem 1.2rem;
+    margin-top: 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.language-toggle:hover {
+    border-color: var(--purple-accent);
+    box-shadow: 0 4px 15px rgba(90, 24, 154, 0.3);
+}
+
+.lang-option {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    transition: all 0.3s;
+    cursor: pointer;
+}
+
+.lang-option.active {
+    color: var(--purple-accent);
+    font-weight: 600;
+    transform: scale(1.1);
+}
+
+.lang-separator {
+    color: var(--purple-muted);
+    font-size: 0.9rem;
+}
+
+body.mobile-layout .language-toggle {
+    margin: 1.5rem auto 0;
 }

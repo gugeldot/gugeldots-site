@@ -42,9 +42,14 @@
                         Building skills in offensive security and industrial systems
                     </p>
                     <div class="cta-buttons">
-                        <button class="cta-button primary" onclick="scrollToSection(1)">Explore My Work</button>
-                        <button class="cta-button" onclick="openCVModal()">View CV</button>
+                        <button class="cta-button primary" onclick="scrollToSection(1)" data-en="Explore My Work" data-es="Explora mi Trabajo">Explore My Work</button>
+                        <button class="cta-button" onclick="openCVModal()" data-en="View CV" data-es="Ver CV">View CV</button>
                     </div>
+                    <button class="language-toggle" id="languageToggle" onclick="toggleLanguage()">
+                        <span class="lang-option active" data-lang="en">English</span>
+                        <span class="lang-separator">|</span>
+                        <span class="lang-option" data-lang="es">Español</span>
+                    </button>
                     <div class="claude-badge">
                         <span></span>
                         <img src="resources/claude.png" alt="Claude AI" class="claude-icon">
@@ -264,6 +269,7 @@
     <script src="js/mobile-detection.js"></script>
     <script src="js/claude-badge.js"></script>
     <script src="js/github-repos.js"></script>
+    <script src="js/language.js"></script>
     <script src="js/app.js"></script>
 </body>
 </html>
