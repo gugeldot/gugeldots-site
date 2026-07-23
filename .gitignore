@@ -2,6 +2,9 @@
 .DS_Store
 Thumbs.db
 
+# Claude Code configuration
+.claude/
+
 # Editor directories
 .vscode/
 .idea/
@@ -23,3 +26,5 @@ build/
 # Private documents (CVs, academic papers)
 docs/
 *.pdf
+/.claude
+.claude/settings.local.json
