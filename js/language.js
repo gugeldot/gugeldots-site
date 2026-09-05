@@ -41,7 +41,7 @@ const translations = {
         contactEmail: "Email",
         contactGitHub: "GitHub",
         contactLinkedIn: "LinkedIn",
-        contactFooter: "© 2026 Rodrigo Palomo Cuenca<br>Cybersecurity Researcher | Pentester | OT/ICS Security Specialist",
+        contactFooter: "© 2026 Rodrigo Palomo Cuenca<br>Cybersecurity Researcher | Pentester | OT/ICS Security Enthusiast",
 
         // Search
         searchPlaceholder: "Search in Portfolio",
@@ -83,7 +83,7 @@ const translations = {
         contactEmail: "Correo",
         contactGitHub: "GitHub",
         contactLinkedIn: "LinkedIn",
-        contactFooter: "© 2026 Rodrigo Palomo Cuenca<br>Investigador en Ciberseguridad | Pentester | Especialista en Seguridad OT/ICS",
+        contactFooter: "© 2026 Rodrigo Palomo Cuenca<br>Investigador en Ciberseguridad | Pentester | Entusiasta en Seguridad OT/ICS",
 
         // Search
         searchPlaceholder: "Buscar en el Portfolio",
@@ -102,7 +102,7 @@ const sidebarTranslations = {
                 <h3>Areas of Study</h3>
                 <p>• Network security assessment<br>• Web application security (OWASP Top 10)<br>• Basic exploitation techniques<br>• Vulnerability analysis<br>• Security reporting</p>
                 <h3>Certifications in Progress</h3>
-                <p>Currently working towards eCPPT, with plans for eWPTx and OSCP.</p>
+                <p>eCPPT completed, with plans for eWPT, eWPTx and OSCP.</p>
             `
         },
         hardware: {
@@ -176,6 +176,7 @@ const sidebarTranslations = {
             title: 'PROJECT IRONGATE',
             content: `
                 <h3>Industrial Protocol Fuzzer</h3>
+                <p><strong>Status:</strong> Early Planning</p>
                 <p>Rust-based fuzzer for OT/ICS protocols (Modbus TCP, S7comm) with mutation engine and anomaly detection.</p>
                 <h3>Capabilities</h3>
                 <p>• Protocol fuzzing (Modbus TCP, S7comm)<br>• Mutation engine<br>• PLC anomaly detection<br>• Research-focused design</p>
@@ -193,7 +194,7 @@ const sidebarTranslations = {
                 <h3>Áreas de Estudio</h3>
                 <p>• Evaluación de seguridad de redes<br>• Seguridad de aplicaciones web (OWASP Top 10)<br>• Técnicas básicas de explotación<br>• Análisis de vulnerabilidades<br>• Reportes de seguridad</p>
                 <h3>Certificaciones en Progreso</h3>
-                <p>Actualmente trabajando en eCPPT, con planes para eWPTx y OSCP.</p>
+                <p>eCPPT completado, con planes para eWPT, eWPTx y OSCP.</p>
             `
         },
         hardware: {
@@ -267,6 +268,7 @@ const sidebarTranslations = {
             title: 'PROYECTO IRONGATE',
             content: `
                 <h3>Fuzzer de Protocolos Industriales</h3>
+                <p><strong>Estado:</strong> Planteamiento Temprano</p>
                 <p>Fuzzer basado en Rust para protocolos OT/ICS (Modbus TCP, S7comm) con motor de mutación y detección de anomalías.</p>
                 <h3>Capacidades</h3>
                 <p>• Fuzzing de protocolos (Modbus TCP, S7comm)<br>• Motor de mutación<br>• Detección de anomalías en PLC<br>• Diseño enfocado a investigación</p>

@@ -24,7 +24,7 @@ const sidebarData = {
             <h3>Areas of Study</h3>
             <p>• Network security assessment<br>• Web application security (OWASP Top 10)<br>• Basic exploitation techniques<br>• Vulnerability analysis<br>• Security reporting</p>
             <h3>Certifications in Progress</h3>
-            <p>Currently working towards eCPPT, with plans for eWPTx and OSCP.</p>
+            <p>eCPPT completed, with plans for eWPT, eWPTx and OSCP.</p>
         `
     },
     hardware: {
@@ -64,7 +64,7 @@ const sidebarData = {
         title: 'eCPPT Certification',
         content: `
             <h3>eLearnSecurity Certified Professional Penetration Tester</h3>
-            <p><strong>Timeline:</strong> Summer 2026<br><strong>Status:</strong> In Progress</p>
+            <p><strong>Completed:</strong> Summer 2026<br><strong>Status:</strong> Certified</p>
             <h3>About</h3>
             <p>Practical, hands-on certification validating professional penetration testing skills with real-world exploitation focus.</p>
             <h3>Coverage</h3>

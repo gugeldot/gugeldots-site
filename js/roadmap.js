@@ -29,7 +29,7 @@ const roadmapData = [
         title: 'eCPPT',
         shortTitle: 'eCPPT',
         date: 'Summer 2026',
-        status: 'in-progress',
+        status: 'completed',
         type: 'certification',
         description: 'eLearnSecurity Certified Professional Penetration Tester',
         key: 'ecppt'
