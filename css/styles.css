@@ -1532,6 +1532,12 @@ body.mobile-layout .roadmap-checkpoints {
     padding: 0 1rem;
 }
 
+/* Mobile has no entrance/exit animation at all: cards always render in
+   their final state. (Previously they started at opacity:0 pending a
+   .revealed class from JS - that class is still added/removed for
+   compatibility, but nothing here depends on it anymore. Showing content
+   unconditionally by default is also just more robust: an animation-gating
+   bug here once left every card permanently invisible.) */
 body.mobile-layout .roadmap-checkpoint {
     position: relative !important;
     transform: none !important;
@@ -1544,12 +1550,6 @@ body.mobile-layout .roadmap-checkpoint {
     top: auto !important;
     right: auto !important;
     bottom: auto !important;
-    opacity: 0;
-    transition: opacity 0.4s ease-out;
-}
-
-body.mobile-layout .roadmap-checkpoint.revealed {
-    opacity: 1;
 }
 
 /* Línea conectora con ::before */
@@ -1562,13 +1562,7 @@ body.mobile-layout .roadmap-checkpoint::before {
     height: 2.5rem;
     background: linear-gradient(to bottom, var(--purple-muted), var(--purple-deep));
     opacity: 0.6;
-    transform: translateX(-50%) scaleY(0);
-    transform-origin: top center;
-    transition: transform 0.5s ease-out;
-}
-
-body.mobile-layout .roadmap-checkpoint.revealed::before {
-    transform: translateX(-50%) scaleY(1);
+    transform: translateX(-50%);
 }
 
 body.mobile-layout .roadmap-checkpoint.lane-first::before {
@@ -1591,12 +1585,6 @@ body.mobile-layout .checkpoint-marker {
     height: 50px;
     font-size: 1.3rem;
     position: relative;
-    transform: scale(0.4);
-    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-body.mobile-layout .roadmap-checkpoint.revealed .checkpoint-marker {
-    transform: scale(1);
 }
 
 body.mobile-layout .checkpoint-content {

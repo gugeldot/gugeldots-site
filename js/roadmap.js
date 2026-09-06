@@ -503,43 +503,63 @@ function computeCareerLayout() {
     return { lanes, width, height, today, scale, labelClearance };
 }
 
+// Attaches the scroll-triggered reveal/hide observer used on DESKTOP only.
+// Mobile deliberately never calls this - see initRoadmap().
+function attachCareerObserver() {
+    if (careerObserverAttached) return;
+    const wrapper = document.querySelector('.roadmap-wrapper');
+    if (wrapper && 'IntersectionObserver' in window) {
+        // Kept observing indefinitely (never disconnected): leaving the
+        // section plays the reveal in reverse, so coming back to it later
+        // plays the full entrance again instead of just snapping everything
+        // back into place.
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !careerRoadmapRevealed) {
+                    careerRoadmapRevealed = true;
+                    careerAnimationGeneration++;
+                    revealCareerRoadmap(!prefersReducedMotion());
+                } else if (!entry.isIntersecting && careerRoadmapRevealed) {
+                    careerRoadmapRevealed = false;
+                    careerAnimationGeneration++;
+                    hideCareerRoadmap(!prefersReducedMotion());
+                }
+            });
+        }, { threshold: 0.3 });
+        observer.observe(wrapper);
+    } else {
+        careerRoadmapRevealed = true;
+        revealCareerRoadmap(false);
+    }
+    careerObserverAttached = true;
+}
+
 function initRoadmap() {
     const roadmapSvg = document.getElementById('roadmapPath');
     const checkpointsContainer = document.getElementById('roadmapCheckpoints');
 
     if (!roadmapSvg || !checkpointsContainer) return;
 
+    const isMobileNow = window.isMobileDevice ? window.isMobileDevice() : window.innerWidth <= 768;
+
+    // Mobile is a long scrollable page (3 stacked lanes, every card in
+    // them), not a single-screen diagram - it just shows everything
+    // immediately, with no scroll-triggered entrance/exit animation. Trying
+    // to gate that on IntersectionObserver was also the source of a real
+    // bug: threshold is a fraction of the WRAPPER'S OWN height, and on
+    // mobile that wrapper is several screens tall, so it never became 30%
+    // visible at once and the reveal never fired (cards stuck invisible).
+    if (isMobileNow) {
+        careerRoadmapRevealed = true;
+    }
+
     buildCareerRoadmapDOM();
     if (careerRoadmapRevealed) {
         revealCareerRoadmap(false);
     }
 
-    if (!careerObserverAttached) {
-        const wrapper = document.querySelector('.roadmap-wrapper');
-        if (wrapper && 'IntersectionObserver' in window) {
-            // Kept observing indefinitely (never disconnected): leaving the
-            // section plays the reveal in reverse, so coming back to it
-            // later plays the full entrance again instead of just snapping
-            // everything back into place.
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting && !careerRoadmapRevealed) {
-                        careerRoadmapRevealed = true;
-                        careerAnimationGeneration++;
-                        revealCareerRoadmap(!prefersReducedMotion());
-                    } else if (!entry.isIntersecting && careerRoadmapRevealed) {
-                        careerRoadmapRevealed = false;
-                        careerAnimationGeneration++;
-                        hideCareerRoadmap(!prefersReducedMotion());
-                    }
-                });
-            }, { threshold: 0.3 });
-            observer.observe(wrapper);
-        } else {
-            careerRoadmapRevealed = true;
-            revealCareerRoadmap(false);
-        }
-        careerObserverAttached = true;
+    if (!isMobileNow) {
+        attachCareerObserver();
     }
 
     // Re-render on mobile/desktop breakpoint crossing, or when the viewport
@@ -547,7 +567,7 @@ function initRoadmap() {
     // computeCareerLayout) - keeps the diagram filling the window well
     // instead of only sizing itself once at load.
     let resizeTimeout;
-    let lastIsMobile = window.isMobileDevice ? window.isMobileDevice() : window.innerWidth <= 768;
+    let lastIsMobile = isMobileNow;
     let lastHeight = window.innerHeight;
     window.addEventListener('resize', () => {
         clearTimeout(resizeTimeout);
@@ -557,6 +577,11 @@ function initRoadmap() {
             if (newIsMobile !== lastIsMobile || (!newIsMobile && heightChanged)) {
                 lastIsMobile = newIsMobile;
                 lastHeight = window.innerHeight;
+                if (newIsMobile) {
+                    careerRoadmapRevealed = true;
+                } else {
+                    attachCareerObserver();
+                }
                 buildCareerRoadmapDOM();
                 if (careerRoadmapRevealed) revealCareerRoadmap(false);
             }
@@ -834,16 +859,16 @@ function attachCheckpointBehavior(checkpoint, node) {
     });
 }
 
-// Reveal runs forward (line draws in, nodes pop as it passes) slowly and
-// deliberately. Leaving the section runs the same choreography in reverse
-// (line retracts, nodes vanish in the opposite order) via
-// hideCareerRoadmap(), but much faster - it's a quick "get out of the way",
-// not a second performance.
+// Desktop-only timing: reveal runs forward (line draws in, nodes pop as it
+// passes) slowly and deliberately. Leaving the section runs the same
+// choreography in reverse (line retracts, nodes vanish in the opposite
+// order) via hideCareerRoadmap(), but much faster - it's a quick "get out
+// of the way", not a second performance. Mobile has no animation at all
+// (see revealMobile/hideMobile).
 const ROADMAP_LINE_DURATION = 2600;
 const ROADMAP_LANE_STAGGER = 400;
 const ROADMAP_HIDE_LINE_DURATION = 450;
 const ROADMAP_HIDE_LANE_STAGGER = 60;
-const ROADMAP_HIDE_MOBILE_STAGGER = 50;
 
 // Plays (or instantly applies) the "shown" state on whatever is currently
 // rendered - lines draw in, nodes pop in as the line reaches them.
@@ -995,35 +1020,20 @@ function hideDesktop(animate) {
     });
 }
 
-function revealMobile(animate) {
-    const gen = careerAnimationGeneration;
-    const checkpoints = document.querySelectorAll('.roadmap-checkpoint');
-    checkpoints.forEach((checkpoint, index) => {
-        if (!animate) {
-            checkpoint.classList.add('revealed');
-            return;
-        }
-        setTimeout(() => {
-            if (gen !== careerAnimationGeneration) return;
-            checkpoint.classList.add('revealed');
-        }, index * 280);
+// Mobile deliberately has no entrance/exit animation at all - it's a long
+// scrollable page (see initRoadmap), so these just apply/remove the class
+// instantly for every card. The `animate` param is accepted (and ignored)
+// only so revealCareerRoadmap/hideCareerRoadmap can call these the same way
+// they call the desktop versions.
+function revealMobile() {
+    document.querySelectorAll('.roadmap-checkpoint').forEach(checkpoint => {
+        checkpoint.classList.add('revealed');
     });
 }
 
-function hideMobile(animate) {
-    const gen = careerAnimationGeneration;
-    const checkpoints = document.querySelectorAll('.roadmap-checkpoint');
-    const total = checkpoints.length;
-    checkpoints.forEach((checkpoint, index) => {
-        if (!animate) {
-            checkpoint.classList.remove('revealed');
-            return;
-        }
-        const reverseIndex = total - 1 - index;
-        setTimeout(() => {
-            if (gen !== careerAnimationGeneration) return;
-            checkpoint.classList.remove('revealed');
-        }, reverseIndex * ROADMAP_HIDE_MOBILE_STAGGER);
+function hideMobile() {
+    document.querySelectorAll('.roadmap-checkpoint').forEach(checkpoint => {
+        checkpoint.classList.remove('revealed');
     });
 }
 
