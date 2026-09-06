@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Rodrigo Palomo Cuenca - Cybersecurity Researcher & Engineer specializing in OT/ICS Security, Penetration Testing & DevSecOps">
+    <meta name="description" content="Rodrigo Palomo Cuenca - Cybersecurity Enthusiast specializing in OT/ICS Security, Penetration Testing & DevSecOps">
     <meta name="author" content="Rodrigo Palomo Cuenca">
     <meta name="keywords" content="cybersecurity, penetration testing, OT/ICS security, DevSecOps, BadUSB, industrial security">
     <title>Rodrigo Palomo Cuenca - Cybersecurity Portfolio</title>
@@ -22,7 +22,7 @@
         <div class="nav-dots">
             <div class="nav-dot active" data-section="Home" data-index="0"></div>
             <div class="nav-dot" data-section="About" data-index="1"></div>
-            <div class="nav-dot" data-section="Roadmap" data-index="2"></div>
+            <div class="nav-dot" data-section="Career" data-index="2"></div>
             <div class="nav-dot" data-section="Projects" data-index="3"></div>
             <div class="nav-dot" data-section="Repos" data-index="4"></div>
             <div class="nav-dot" data-section="Contact" data-index="5"></div>
@@ -35,7 +35,7 @@
             <section class="section">
                 <div class="hero-content">
                     <h1>Rodrigo Palomo Cuenca</h1>
-                    <p class="nickname">GUGELDOT</p>
+                    <p class="nickname">AKA - Gugeldot</p>
                     <p class="subtitle">Cybersecurity Enthusiast</p>
                     <p class="tagline">
                         Information Systems Engineer exploring OT/ICS Security and Penetration Testing<br>
@@ -50,10 +50,6 @@
                         <span class="lang-separator">|</span>
                         <span class="lang-option" data-lang="es">Español</span>
                     </button>
-                    <div class="claude-badge">
-                        <span></span>
-                        <img src="resources/claude.png" alt="Claude AI" class="claude-icon">
-                    </div>
                 </div>
             </section>
 
@@ -87,12 +83,14 @@
             </section>
 
             <!-- Roadmap Section -->
-            <section class="section">
+            <section class="section roadmap-section">
                 <div class="roadmap-wrapper">
-                    <h2>Certification Roadmap</h2>
+                    <h2>Career Roadmap</h2>
                     <div class="roadmap-container">
-                        <svg class="roadmap-svg" id="roadmapPath" viewBox="0 0 1200 400" preserveAspectRatio="xMidYMid meet"></svg>
-                        <div class="roadmap-checkpoints" id="roadmapCheckpoints"></div>
+                        <div class="roadmap-canvas" id="roadmapCanvas">
+                            <svg class="roadmap-svg" id="roadmapPath"></svg>
+                            <div class="roadmap-checkpoints" id="roadmapCheckpoints"></div>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -165,7 +163,8 @@
                             </div>
                         </div>
 
-                        <div class="project-card" onclick="openSidebar('irongate')">
+                        <div class="project-card project-card--upcoming" onclick="openSidebar('irongate')">
+                            <span class="project-status-badge" data-en="Upcoming / Planned" data-es="Próximo / Planeado">Upcoming / Planned</span>
                             <h3 data-en="PROJECT IRONGATE" data-es="PROYECTO IRONGATE">PROJECT IRONGATE</h3>
                             <p class="project-meta" data-en="Side Project | Early Planning | OT/ICS Security" data-es="Proyecto Personal | Planteamiento Temprano | Seguridad OT/ICS">Side Project | Early Planning | OT/ICS Security</p>
                             <p data-en="Industrial protocol fuzzer (Modbus TCP, S7comm) in Rust for OT/ICS security research. Includes mutation engine and PLC anomaly detection." data-es="Fuzzer de protocolos industriales (Modbus TCP, S7comm) en Rust para investigación de seguridad OT/ICS. Incluye motor de mutación y detección de anomalías en PLC.">Industrial protocol fuzzer (Modbus TCP, S7comm) in Rust for OT/ICS security research. Includes mutation engine and PLC anomaly detection.</p>
@@ -225,8 +224,12 @@
                     </div>
                     <p style="color: var(--text-secondary); margin-top: 3rem; font-size: 0.9rem;">
                         © 2026 Rodrigo Palomo Cuenca<br>
-                        Cybersecurity Researcher | Pentester | OT/ICS Security Enthusiast
+                        Cybersecurity Enthusiast
                     </p>
+                    <div class="claude-badge claude-badge--footer">
+                        <span></span>
+                        <img src="resources/claude.png" alt="Claude AI" class="claude-icon">
+                    </div>
                 </div>
             </section>
         </div>

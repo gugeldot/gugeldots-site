@@ -24,7 +24,7 @@ const sidebarData = {
             <h3>Areas of Study</h3>
             <p>• Network security assessment<br>• Web application security (OWASP Top 10)<br>• Basic exploitation techniques<br>• Vulnerability analysis<br>• Security reporting</p>
             <h3>Certifications in Progress</h3>
-            <p>eCPPT completed, with plans for eWPT, eWPTx and OSCP.</p>
+            <p>eCPPT completed, with plans for eWPTx and OSCP.</p>
         `
     },
     hardware: {
@@ -71,6 +71,30 @@ const sidebarData = {
             <p>• Penetration testing methodologies<br>• Network security assessment<br>• Web application testing<br>• Exploitation<br>• Post-exploitation<br>• Professional reporting</p>
         `
     },
+    inta: {
+        title: 'Cybersecurity Intern - INTA',
+        content: `
+            <h3>Instituto Nacional de Técnica Aeroespacial «Esteban Terradas»</h3>
+            <p><strong>Type:</strong> Internship<br><strong>Duration:</strong> Sep 2025 - Nov 2025 (3 months)</p>
+            <p>First hands-on cybersecurity experience within Spain's national aerospace research institute, gaining exposure to security practices in a critical, high-assurance environment.</p>
+        `
+    },
+    indraIntern: {
+        title: 'Software Engineer Intern - Indra ATM',
+        content: `
+            <h3>Indra Group</h3>
+            <p><strong>Type:</strong> Internship (Indra ATM)<br><strong>Duration:</strong> Nov 2025 - Apr 2026 (6 months)</p>
+            <p>Transitioned into software engineering within Indra's Air Traffic Management division, contributing to real production systems and development workflows.</p>
+        `
+    },
+    indraJunior: {
+        title: 'Junior Software Engineer - Indra ATM',
+        content: `
+            <h3>Indra ATM</h3>
+            <p><strong>Type:</strong> Full-time<br><strong>Duration:</strong> May 2026 - Present</p>
+            <p>Promoted to Junior Software Engineer within Indra's Air Traffic Management division, continuing to build professional software development experience while pursuing cybersecurity specialization in parallel.</p>
+        `
+    },
     master: {
         title: "Master's Degree in Cybersecurity",
         content: `
@@ -110,24 +134,76 @@ const sidebarData = {
         title: 'eWPTx Certification',
         content: `
             <h3>Web Application Penetration Tester eXtreme</h3>
-            <p><strong>Timeline:</strong> Summer 2027<br><strong>Status:</strong> Planned</p>
+            <p><strong>Timeline:</strong> Summer 2028 (after PhD Year 1)<br><strong>Status:</strong> Planned</p>
             <h3>Advanced Web Security</h3>
             <p>Advanced-level web application security testing with complex vulnerabilities and sophisticated exploitation.</p>
             <h3>Technical Coverage</h3>
             <p>• Advanced OWASP Top 10<br>• Authentication bypasses<br>• Client-side attacks<br>• Advanced SQLi<br>• API security<br>• Modern framework exploitation</p>
         `
     },
+    cpts: {
+        title: 'CPTS Certification',
+        content: `
+            <h3>HackTheBox Certified Penetration Testing Specialist</h3>
+            <p><strong>Timeline:</strong> Summer 2029<br><strong>Status:</strong> Planned</p>
+            <h3>Practical, Hands-On Certification</h3>
+            <p>Full-scope penetration testing exam covering enumeration, exploitation, privilege escalation, Active Directory attacks and professional reporting.</p>
+            <h3>Why CPTS</h3>
+            <p>Complements OSCP with HackTheBox's own methodology and a strong focus on Active Directory environments, an area of continued practical interest.</p>
+        `
+    },
     oscp: {
         title: 'OSCP Certification',
         content: `
             <h3>Offensive Security Certified Professional</h3>
-            <p><strong>Timeline:</strong> 2028-2029<br><strong>Status:</strong> Planned</p>
+            <p><strong>Timeline:</strong> Under consideration<br><strong>Status:</strong> Planned</p>
+            <p>No committed date yet - depends on the actual workload of PhD Year 3.</p>
             <h3>Industry Gold Standard</h3>
             <p>Most rigorous penetration testing certification featuring 24-hour practical exam requiring successful compromise of multiple machines.</p>
             <h3>Why OSCP</h3>
             <p>Represents offensive security excellence. "Try Harder" methodology and practical focus invaluable for real-world pentesting.</p>
             <h3>Career Impact</h3>
             <p>Often required for senior penetration testing roles, demonstrates commitment to offensive security excellence.</p>
+        `
+    },
+    phd1: {
+        title: 'PhD - Year 1',
+        content: `
+            <h3>Doctoral Studies - First Year</h3>
+            <p><strong>Timeline:</strong> 2027-2028<br><strong>Status:</strong> Planned</p>
+            <p>Full focus on coursework and research onboarding for the PhD program. No new certifications are scheduled during this year.</p>
+        `
+    },
+    phd2: {
+        title: 'PhD - Year 2',
+        content: `
+            <h3>Doctoral Studies - Second Year</h3>
+            <p><strong>Timeline:</strong> 2028-2029<br><strong>Status:</strong> Planned</p>
+            <p>Deepening research focus, publishing initial findings, and continuing coursework requirements.</p>
+        `
+    },
+    phd3: {
+        title: 'PhD - Year 3',
+        content: `
+            <h3>Doctoral Studies - Third Year</h3>
+            <p><strong>Timeline:</strong> 2029-2030<br><strong>Status:</strong> Planned</p>
+            <p>Core research phase - experiments, data collection, and conference publications.</p>
+        `
+    },
+    phd4: {
+        title: 'PhD - Year 4',
+        content: `
+            <h3>Doctoral Studies - Fourth Year</h3>
+            <p><strong>Timeline:</strong> 2030-2031<br><strong>Status:</strong> Planned</p>
+            <p>Consolidating research results and drafting dissertation chapters.</p>
+        `
+    },
+    phd5: {
+        title: 'PhD - Year 5',
+        content: `
+            <h3>Doctoral Studies - Fifth Year</h3>
+            <p><strong>Timeline:</strong> 2031-2032<br><strong>Status:</strong> Planned</p>
+            <p>Dissertation writing and defense, wrapping up the doctoral program.</p>
         `
     },
     tfg: {

@@ -94,6 +94,14 @@ function initWheelNav() {
     // Desktop wheel navigation only
     let scrollTimeout;
     document.addEventListener('wheel', (e) => {
+        // Only defer to the roadmap's own horizontal scrollbar when it
+        // actually HAS horizontal overflow to scroll - most windows are
+        // wide enough that it doesn't (see roadmap.js's adaptive scale), so
+        // this must not unconditionally swallow every wheel event over it.
+        const roadmapContainer = e.target.closest('.roadmap-container');
+        if (roadmapContainer && roadmapContainer.scrollWidth > roadmapContainer.clientWidth) {
+            return;
+        }
         clearTimeout(scrollTimeout);
         scrollTimeout = setTimeout(() => {
             if (e.deltaY > 0 && currentSection < totalSections - 1) {
@@ -125,6 +133,12 @@ function initTouchNav() {
     }, { passive: true });
 
     scrollContainer.addEventListener('touchend', (e) => {
+        // Only defer to the roadmap's own horizontal scroll when it
+        // actually has horizontal overflow to scroll.
+        const roadmapContainer = e.target.closest('.roadmap-container');
+        if (roadmapContainer && roadmapContainer.scrollWidth > roadmapContainer.clientWidth) {
+            return;
+        }
         touchEndX = e.changedTouches[0].screenX;
         handleSwipe();
     }, { passive: true });

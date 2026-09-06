@@ -15,15 +15,7 @@ const translations = {
         aboutSubtitle: "Information Systems Engineer from University of Alcalá de Henares, Spain<br>Currently pursuing Master's in Cybersecurity at UNIR, focusing on OT/ICS Security",
 
         // Roadmap
-        roadmapTitle: "Certification Roadmap",
-        roadmapNodes: {
-            "Bachelor's Degree": "Bachelor's Degree",
-            "Master's Degree": "Master's Degree",
-            "Azure & AWS": "Azure & AWS",
-            "Summer 2026": "Summer 2026",
-            "Summer 2027": "Summer 2027",
-            "Summer 2028": "Summer 2028"
-        },
+        roadmapTitle: "Career Roadmap",
 
         // Projects
         projectsTitle: "Academic & Research Projects",
@@ -41,7 +33,7 @@ const translations = {
         contactEmail: "Email",
         contactGitHub: "GitHub",
         contactLinkedIn: "LinkedIn",
-        contactFooter: "© 2026 Rodrigo Palomo Cuenca<br>Cybersecurity Researcher | Pentester | OT/ICS Security Enthusiast",
+        contactFooter: "© 2026 Rodrigo Palomo Cuenca<br>Cybersecurity Enthusiast",
 
         // Search
         searchPlaceholder: "Search in Portfolio",
@@ -57,15 +49,7 @@ const translations = {
         aboutSubtitle: "Ingeniero de Sistemas de Información de la Universidad de Alcalá de Henares, España<br>Actualmente cursando Máster en Ciberseguridad en UNIR, enfocado en Seguridad OT/ICS",
 
         // Roadmap
-        roadmapTitle: "Hoja de Ruta de Certificaciones",
-        roadmapNodes: {
-            "Bachelor's Degree": "Grado",
-            "Master's Degree": "Máster",
-            "Azure & AWS": "Azure y AWS",
-            "Summer 2026": "Verano 2026",
-            "Summer 2027": "Verano 2027",
-            "Summer 2028": "Verano 2028"
-        },
+        roadmapTitle: "Hoja de Ruta Profesional",
 
         // Projects
         projectsTitle: "Proyectos Académicos e Investigación",
@@ -83,7 +67,7 @@ const translations = {
         contactEmail: "Correo",
         contactGitHub: "GitHub",
         contactLinkedIn: "LinkedIn",
-        contactFooter: "© 2026 Rodrigo Palomo Cuenca<br>Investigador en Ciberseguridad | Pentester | Entusiasta en Seguridad OT/ICS",
+        contactFooter: "© 2026 Rodrigo Palomo Cuenca<br>Entusiasta de Ciberseguridad",
 
         // Search
         searchPlaceholder: "Buscar en el Portfolio",
@@ -102,7 +86,7 @@ const sidebarTranslations = {
                 <h3>Areas of Study</h3>
                 <p>• Network security assessment<br>• Web application security (OWASP Top 10)<br>• Basic exploitation techniques<br>• Vulnerability analysis<br>• Security reporting</p>
                 <h3>Certifications in Progress</h3>
-                <p>eCPPT completed, with plans for eWPT, eWPTx and OSCP.</p>
+                <p>eCPPT completed, with plans for eWPTx and OSCP.</p>
             `
         },
         hardware: {
@@ -183,6 +167,70 @@ const sidebarTranslations = {
                 <h3>Goal</h3>
                 <p>Publication at industrial security conferences (S4x, ICS-CERT)</p>
             `
+        },
+        phd1: {
+            title: 'PhD - Year 1',
+            content: `
+                <h3>Doctoral Studies - First Year</h3>
+                <p><strong>Timeline:</strong> 2027-2028<br><strong>Status:</strong> Planned</p>
+                <p>Full focus on coursework and research onboarding for the PhD program. No new certifications are scheduled during this year.</p>
+            `
+        },
+        phd2: {
+            title: 'PhD - Year 2',
+            content: `
+                <h3>Doctoral Studies - Second Year</h3>
+                <p><strong>Timeline:</strong> 2028-2029<br><strong>Status:</strong> Planned</p>
+                <p>Deepening research focus, publishing initial findings, and continuing coursework requirements.</p>
+            `
+        },
+        phd3: {
+            title: 'PhD - Year 3',
+            content: `
+                <h3>Doctoral Studies - Third Year</h3>
+                <p><strong>Timeline:</strong> 2029-2030<br><strong>Status:</strong> Planned</p>
+                <p>Core research phase - experiments, data collection, and conference publications.</p>
+            `
+        },
+        phd4: {
+            title: 'PhD - Year 4',
+            content: `
+                <h3>Doctoral Studies - Fourth Year</h3>
+                <p><strong>Timeline:</strong> 2030-2031<br><strong>Status:</strong> Planned</p>
+                <p>Consolidating research results and drafting dissertation chapters.</p>
+            `
+        },
+        phd5: {
+            title: 'PhD - Year 5',
+            content: `
+                <h3>Doctoral Studies - Fifth Year</h3>
+                <p><strong>Timeline:</strong> 2031-2032<br><strong>Status:</strong> Planned</p>
+                <p>Dissertation writing and defense, wrapping up the doctoral program.</p>
+            `
+        },
+        inta: {
+            title: 'Cybersecurity Intern - INTA',
+            content: `
+                <h3>Instituto Nacional de Técnica Aeroespacial «Esteban Terradas»</h3>
+                <p><strong>Type:</strong> Internship<br><strong>Duration:</strong> Sep 2025 - Nov 2025 (3 months)</p>
+                <p>First hands-on cybersecurity experience within Spain's national aerospace research institute, gaining exposure to security practices in a critical, high-assurance environment.</p>
+            `
+        },
+        indraIntern: {
+            title: 'Software Engineer Intern - Indra ATM',
+            content: `
+                <h3>Indra Group</h3>
+                <p><strong>Type:</strong> Internship (Indra ATM)<br><strong>Duration:</strong> Nov 2025 - Apr 2026 (6 months)</p>
+                <p>Transitioned into software engineering within Indra's Air Traffic Management division, contributing to real production systems and development workflows.</p>
+            `
+        },
+        indraJunior: {
+            title: 'Junior Software Engineer - Indra ATM',
+            content: `
+                <h3>Indra ATM</h3>
+                <p><strong>Type:</strong> Full-time<br><strong>Duration:</strong> May 2026 - Present</p>
+                <p>Promoted to Junior Software Engineer within Indra's Air Traffic Management division, continuing to build professional software development experience while pursuing cybersecurity specialization in parallel.</p>
+            `
         }
     },
     es: {
@@ -194,7 +242,7 @@ const sidebarTranslations = {
                 <h3>Áreas de Estudio</h3>
                 <p>• Evaluación de seguridad de redes<br>• Seguridad de aplicaciones web (OWASP Top 10)<br>• Técnicas básicas de explotación<br>• Análisis de vulnerabilidades<br>• Reportes de seguridad</p>
                 <h3>Certificaciones en Progreso</h3>
-                <p>eCPPT completado, con planes para eWPT, eWPTx y OSCP.</p>
+                <p>eCPPT completado, con planes para eWPTx y OSCP.</p>
             `
         },
         hardware: {
@@ -275,6 +323,70 @@ const sidebarTranslations = {
                 <h3>Objetivo</h3>
                 <p>Publicación en conferencias de seguridad industrial (S4x, ICS-CERT)</p>
             `
+        },
+        phd1: {
+            title: 'Doctorado - Año 1',
+            content: `
+                <h3>Estudios de Doctorado - Primer Año</h3>
+                <p><strong>Duración:</strong> 2027-2028<br><strong>Estado:</strong> Planeado</p>
+                <p>Enfoque total en cursos y adaptación a la investigación del programa de doctorado. No hay certificaciones nuevas previstas durante este año.</p>
+            `
+        },
+        phd2: {
+            title: 'Doctorado - Año 2',
+            content: `
+                <h3>Estudios de Doctorado - Segundo Año</h3>
+                <p><strong>Duración:</strong> 2028-2029<br><strong>Estado:</strong> Planeado</p>
+                <p>Profundización en la línea de investigación, primeras publicaciones y finalización de los cursos.</p>
+            `
+        },
+        phd3: {
+            title: 'Doctorado - Año 3',
+            content: `
+                <h3>Estudios de Doctorado - Tercer Año</h3>
+                <p><strong>Duración:</strong> 2029-2030<br><strong>Estado:</strong> Planeado</p>
+                <p>Fase central de investigación - experimentos, recogida de datos y publicaciones en congresos.</p>
+            `
+        },
+        phd4: {
+            title: 'Doctorado - Año 4',
+            content: `
+                <h3>Estudios de Doctorado - Cuarto Año</h3>
+                <p><strong>Duración:</strong> 2030-2031<br><strong>Estado:</strong> Planeado</p>
+                <p>Consolidación de resultados de investigación y redacción de capítulos de la tesis.</p>
+            `
+        },
+        phd5: {
+            title: 'Doctorado - Año 5',
+            content: `
+                <h3>Estudios de Doctorado - Quinto Año</h3>
+                <p><strong>Duración:</strong> 2031-2032<br><strong>Estado:</strong> Planeado</p>
+                <p>Redacción y defensa de la tesis doctoral, cierre del programa.</p>
+            `
+        },
+        inta: {
+            title: 'Becario en Ciberseguridad - INTA',
+            content: `
+                <h3>Instituto Nacional de Técnica Aeroespacial «Esteban Terradas»</h3>
+                <p><strong>Tipo:</strong> Prácticas<br><strong>Duración:</strong> Sep 2025 - Nov 2025 (3 meses)</p>
+                <p>Primera experiencia práctica en ciberseguridad dentro del instituto nacional de técnica aeroespacial, con exposición a prácticas de seguridad en un entorno crítico de alta exigencia.</p>
+            `
+        },
+        indraIntern: {
+            title: 'Becario de Ingeniería de Software - Indra ATM',
+            content: `
+                <h3>Indra Group</h3>
+                <p><strong>Tipo:</strong> Prácticas (Indra ATM)<br><strong>Duración:</strong> Nov 2025 - Abr 2026 (6 meses)</p>
+                <p>Transición a la ingeniería de software dentro de la división de Gestión de Tráfico Aéreo de Indra, contribuyendo a sistemas en producción y flujos de desarrollo reales.</p>
+            `
+        },
+        indraJunior: {
+            title: 'Ingeniero de Software Junior - Indra ATM',
+            content: `
+                <h3>Indra ATM</h3>
+                <p><strong>Tipo:</strong> Tiempo completo<br><strong>Duración:</strong> Mayo 2026 - Actualidad</p>
+                <p>Promocionado a Ingeniero de Software Junior dentro de la división de Gestión de Tráfico Aéreo de Indra, continuando el desarrollo profesional en software mientras compagina la especialización en ciberseguridad.</p>
+            `
         }
     }
 };
@@ -354,23 +466,11 @@ function updateRoadmapSection(t) {
     const roadmapTitle = document.querySelector('.roadmap-wrapper h2');
     if (roadmapTitle) roadmapTitle.textContent = t.roadmapTitle;
 
-    // Update roadmap node titles
-    const checkpointTitles = document.querySelectorAll('.checkpoint-title');
-    checkpointTitles.forEach(title => {
-        const originalText = title.textContent.trim();
-        if (t.roadmapNodes[originalText]) {
-            title.textContent = t.roadmapNodes[originalText];
-        }
-    });
-
-    // Update roadmap node dates
-    const checkpointDates = document.querySelectorAll('.checkpoint-date');
-    checkpointDates.forEach(date => {
-        const originalText = date.textContent.trim();
-        if (t.roadmapNodes[originalText]) {
-            date.textContent = t.roadmapNodes[originalText];
-        }
-    });
+    // Career roadmap (lanes, nodes, tooltips) carries its own bilingual data
+    // and rebuilds itself in place - see js/roadmap.js
+    if (window.updateCareerRoadmapLanguage) {
+        window.updateCareerRoadmapLanguage();
+    }
 }
 
 function updateProjectsSection(t) {
