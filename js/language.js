@@ -19,8 +19,8 @@ const translations = {
 
         // Projects
         projectsTitle: "Academic & Research Projects",
-        htbStats: "+120 rooted machines • Master Grade II Rank",
-        thmStats: "Level Master • Top 3% • 180+ rooms",
+        htbStats: "+120 rooted machines • Master Grade III Rank",
+        thmStats: "Level Guru • Top 2% • 180+ rooms",
 
         // Repos
         reposTitle: "GitHub Repositories",
@@ -53,8 +53,8 @@ const translations = {
 
         // Projects
         projectsTitle: "Proyectos Académicos e Investigación",
-        htbStats: "+120 máquinas rooteadas • Rango Master Grade II",
-        thmStats: "Nivel Master • Top 3% • 180+ salas",
+        htbStats: "+120 máquinas rooteadas • Rango Master Grade III",
+        thmStats: "Nivel Guru • Top 2% • 180+ salas",
 
         // Repos
         reposTitle: "Repositorios de GitHub",
