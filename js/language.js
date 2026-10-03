@@ -19,7 +19,7 @@ const translations = {
 
         // Projects
         projectsTitle: "Academic & Research Projects",
-        htbStats: "+120 rooted machines • Master Grade III Rank",
+        htbStats: "+162 rooted machines • Prodigy I Rank",
         thmStats: "Level Guru • Top 2% • 180+ rooms",
 
         // Repos
@@ -53,7 +53,7 @@ const translations = {
 
         // Projects
         projectsTitle: "Proyectos Académicos e Investigación",
-        htbStats: "+120 máquinas rooteadas • Rango Master Grade III",
+        htbStats: "+162 máquinas rooteadas • Rango Prodigy I",
         thmStats: "Nivel Guru • Top 2% • 180+ salas",
 
         // Repos
