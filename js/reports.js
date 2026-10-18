@@ -34,7 +34,7 @@ const I18N = {
     en: {
         soon: 'Coming soon', ready: 'Available', view: 'View report',
         groups: {
-            machines: ['Machines', '12 easy boxes, written up as full walkthroughs'],
+            machines: ['Machines', ''],
             labs: ['Labs & Large Machines', 'Multi-host environments: Active Directory, pivoting and recon'],
             guides: ['Study Guides', 'Public syllabus, methodology and tooling only — no exam content']
         }
@@ -42,7 +42,7 @@ const I18N = {
     es: {
         soon: 'Próximamente', ready: 'Disponible', view: 'Ver informe',
         groups: {
-            machines: ['Máquinas', '12 máquinas sencillas, documentadas como walkthroughs completos'],
+            machines: ['Máquinas', ''],
             labs: ['Labs y máquinas grandes', 'Entornos multi-host: Active Directory, pivoting y reconocimiento'],
             guides: ['Guías de estudio', 'Solo syllabus público, metodología y herramientas — sin contenido de examen']
         }
@@ -89,7 +89,7 @@ function renderReports() {
         <section class="report-group">
             <div class="report-group-head">
                 <h2>${title} <span class="report-group-count">${items.length}</span></h2>
-                <p>${subtitle}</p>
+                ${subtitle ? `<p>${subtitle}</p>` : ''}
             </div>
             <div class="report-cards">${items.map(r => renderCard(r, t)).join('')}</div>
         </section>`;
