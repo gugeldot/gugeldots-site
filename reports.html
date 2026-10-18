@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Penetration-test reports (machines, labs and study guides) by Rodrigo Palomo Cuenca (Gugeldot), written with SysReptor.">
+    <meta name="author" content="Rodrigo Palomo Cuenca">
+    <title>Reports - Rodrigo Palomo Cuenca</title>
+
+    <script>if (new URLSearchParams(location.search).has('embed')) document.documentElement.classList.add('embed');</script>
+    <link rel="stylesheet" href="css/reports.css">
+</head>
+<body>
+    <header class="reports-header">
+        <a href="index.html" class="back-link" id="backLink" data-en="&larr; Back to portfolio" data-es="&larr; Volver al portfolio">&larr; Back to portfolio</a>
+    </header>
+
+    <main class="reports-page">
+        <section class="reports-hero">
+            <h1>Reports</h1>
+            <p class="reports-subtitle" data-en="Penetration-test style reports: 12 easy machines, 6 labs and large machines, and 2 study guides."
+                data-es="Informes al estilo pentest: 12 máquinas sencillas, 6 labs y máquinas grandes, y 2 guías de estudio.">
+                Penetration-test style reports: 12 easy machines, 6 labs and large machines, and 2 study guides.
+            </p>
+
+            <a href="https://docs.sysreptor.com/" class="sysreptor-badge" target="_blank" rel="noopener noreferrer">
+                <img src="resources/sysreptor-icon.png" alt="SysReptor" class="sysreptor-icon">
+                <span>
+                    <strong data-en="Made with SysReptor" data-es="Hecho con SysReptor">Made with SysReptor</strong>
+                    <small data-en="Self-hosted reporting platform &middot; custom report design"
+                        data-es="Plataforma de reporting autoalojada &middot; diseño de informe propio">Self-hosted reporting platform &middot; custom report design</small>
+                </span>
+            </a>
+        </section>
+
+        <section class="reports-groups" id="reportsGrid"></section>
+
+        <p class="reports-footnote" data-en="Only retired machines are published. Flags are redacted and study guides contain no exam content."
+            data-es="Solo se publican máquinas retiradas. Las flags están censuradas y las guías no contienen contenido de examen.">
+            Only retired machines are published. Flags are redacted and study guides contain no exam content.
+        </p>
+    </main>
+
+    <!-- PDF viewer -->
+    <div class="pdf-modal" id="pdfModal" role="dialog" aria-modal="true">
+        <div class="pdf-content">
+            <div class="pdf-header">
+                <h3 id="pdfTitle"></h3>
+                <div class="pdf-actions">
+                    <a id="pdfOpen" class="pdf-btn" target="_blank" rel="noopener noreferrer" data-en="Open in new tab" data-es="Abrir en pestaña nueva">Open in new tab</a>
+                    <a id="pdfDownload" class="pdf-btn" download data-en="Download" data-es="Descargar">Download</a>
+                    <button class="pdf-btn pdf-btn--close" onclick="closePdfModal()" data-en="Close" data-es="Cerrar">Close</button>
+                </div>
+            </div>
+            <iframe id="pdfFrame" title="Report PDF"></iframe>
+        </div>
+    </div>
+
+    <script src="js/reports.js"></script>
+</body>
+</html>

@@ -65,7 +65,7 @@ function initKeyboardNav() {
     document.addEventListener('keydown', (e) => {
         const isMobile = window.isMobileDevice ? window.isMobileDevice() : window.innerWidth <= 768;
 
-        if (!isMobile) {
+        if (!isMobile && !window.reportsOpen) {
             // Desktop only: left/right arrow keys
             if (e.key === 'ArrowRight' && currentSection < totalSections - 1) {
                 scrollToSection(currentSection + 1);
@@ -76,6 +76,7 @@ function initKeyboardNav() {
         // Mobile uses native scroll, no keyboard navigation needed
 
         if (e.key === 'Escape') {
+            if (window.reportsOpen) closeReportsPanel();
             closeSidebar();
             closeCVModal();
         }
@@ -94,6 +95,7 @@ function initWheelNav() {
     // Desktop wheel navigation only
     let scrollTimeout;
     document.addEventListener('wheel', (e) => {
+        if (window.reportsOpen) return;
         // Only defer to the roadmap's own horizontal scrollbar when it
         // actually HAS horizontal overflow to scroll - most windows are
         // wide enough that it doesn't (see roadmap.js's adaptive scale), so
@@ -133,6 +135,7 @@ function initTouchNav() {
     }, { passive: true });
 
     scrollContainer.addEventListener('touchend', (e) => {
+        if (window.reportsOpen) return;
         // Only defer to the roadmap's own horizontal scroll when it
         // actually has horizontal overflow to scroll.
         const roadmapContainer = e.target.closest('.roadmap-container');

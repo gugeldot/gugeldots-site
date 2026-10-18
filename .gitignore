@@ -26,3 +26,6 @@ build/
 # Private documents (CVs, academic papers)
 docs/
 *.pdf
+
+# ...except the public HTB reports shown on reports.html
+!reports/*.pdf

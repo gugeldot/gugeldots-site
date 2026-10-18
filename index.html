@@ -28,6 +28,15 @@
             <div class="nav-dot" data-section="Contact" data-index="5"></div>
         </div>
 
+        <!-- Stage: slides vertically between the main line and the reports panel above it -->
+        <div class="stage" id="stage">
+
+        <!-- Reports panel (desktop): sits above the main horizontal line -->
+        <aside class="reports-panel" id="reportsPanel" aria-hidden="true">
+            <button class="reports-panel-back" onclick="closeReportsPanel()" aria-label="Back to portfolio" title="Back to portfolio">&darr;</button>
+            <iframe id="reportsFrame" title="Reports" tabindex="-1"></iframe>
+        </aside>
+
         <!-- Horizontal scroll container -->
         <div class="scroll-container" id="scrollContainer">
 
@@ -118,6 +127,14 @@
                                 <span class="platform-name">TryHackMe</span>
                                 <span class="platform-username">@gugeldot</span>
                                 <span class="platform-stats">Level Guru • Top 2% • 180+ rooms</span>
+                            </div>
+                        </a>
+                        <a href="reports.html" class="platform-badge" id="reportsLink">
+                            <img src="resources/sysreptor-icon.png" alt="SysReptor" class="platform-logo">
+                            <div class="platform-info">
+                                <span class="platform-name" data-en="Reports" data-es="Informes">Reports</span>
+                                <span class="platform-username" data-en="Made with SysReptor" data-es="Hecho con SysReptor">Made with SysReptor</span>
+                                <span class="platform-stats" data-en="12 machines • 6 labs • 2 study guides" data-es="12 máquinas • 6 labs • 2 guías de estudio">12 machines • 6 labs • 2 study guides</span>
                             </div>
                         </a>
                     </div>
@@ -234,6 +251,8 @@
             </section>
         </div>
 
+        </div><!-- /stage -->
+
         <!-- Search Container -->
         <div class="search-container">
             <input type="text" class="search-box" placeholder="Search in Portfolio" id="searchInput" autocomplete="off">
@@ -273,6 +292,7 @@
     <script src="js/claude-badge.js"></script>
     <script src="js/github-repos.js"></script>
     <script src="js/language.js"></script>
+    <script src="js/reports-panel.js"></script>
     <script src="js/app.js"></script>
 </body>
 </html>

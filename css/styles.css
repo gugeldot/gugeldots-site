@@ -2199,3 +2199,82 @@ body.mobile-layout .language-toggle {
     display: flex;
     margin: 1.5rem auto 0;
 }
+
+/* ==========================================================================
+   Reports Panel - sits above the main line; the stage slides down to reveal it
+   ========================================================================== */
+
+.stage {
+    position: relative;
+    transition: transform 0.8s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+.stage.reports-open {
+    transform: translateY(100vh);
+}
+
+.reports-panel {
+    position: absolute;
+    top: -100vh;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 5;
+}
+
+.reports-panel iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    background: transparent;
+}
+
+.reports-panel-back {
+    position: absolute;
+    bottom: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 6;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    border: 1px solid var(--purple-muted);
+    border-radius: 50%;
+    font-family: inherit;
+    font-size: 2.2rem;
+    line-height: 1;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.reports-panel-back:hover {
+    border-color: var(--purple-accent);
+    box-shadow: 0 4px 15px rgba(90, 24, 154, 0.3);
+}
+
+/* Hide the main-line chrome while the panel is showing */
+.nav-dots,
+.search-container,
+.duck-image {
+    transition: opacity 0.4s;
+}
+
+body.reports-open .nav-dots,
+body.reports-open .search-container,
+body.reports-open .duck-image {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Mobile uses a plain link to reports.html: no stage, no panel */
+body.mobile-layout .stage {
+    display: contents;
+}
+
+body.mobile-layout .reports-panel {
+    display: none;
+}
