@@ -97,6 +97,13 @@ body::before {
     margin: 0 auto 2rem;
 }
 
+.reports-curated-note {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    font-style: italic;
+    margin: -1rem auto 2rem;
+}
+
 .sysreptor-badge {
     display: inline-flex;
     align-items: center;
