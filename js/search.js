@@ -30,6 +30,8 @@ const searchableContent = [
     { term: 'ISO 27001', section: 2, desc: 'Security management certification' },
     { term: 'HackTheBox', section: 3, desc: '+120 rooted machines • Master Grade III Rank' },
     { term: 'TryHackMe', section: 3, desc: 'Level Guru • Top 2% • 180+ rooms' },
+    { term: 'Reports / Reportes', section: 3, desc: 'HTB pentest writeups and reports, made with SysReptor', openReports: true },
+    { term: 'SysReptor', section: 3, desc: 'Self-hosted reporting platform used to write these reports', openReports: true },
 ];
 
 function typewriterPlaceholder(element, text, speed = 100) {
@@ -77,6 +79,8 @@ function initSearch() {
             if (typingInterval) clearInterval(typingInterval);
             searchContainer.classList.remove('expanded');
             searchInput.placeholder = '';
+            searchInput.value = '';
+            searchResults.classList.remove('active');
             isTyping = false;
         }
     });
@@ -100,6 +104,7 @@ function initSearch() {
             if (typingInterval) clearInterval(typingInterval);
             searchContainer.classList.remove('expanded');
             searchInput.placeholder = '';
+            searchInput.value = '';
             isTyping = false;
         }
     });
@@ -119,7 +124,7 @@ function initSearch() {
 
         if (matches.length > 0) {
             searchResults.innerHTML = matches.map(match =>
-                `<div class="search-result-item" onclick="handleSearchResult(${match.section})">
+                `<div class="search-result-item" onclick="handleSearchResult(${match.section}, ${!!match.openReports})">
                     <strong>${match.term}</strong><br>
                     <small>${match.desc}</small>
                 </div>`
@@ -136,8 +141,15 @@ function initSearch() {
     });
 }
 
-function handleSearchResult(section) {
+function handleSearchResult(section, openReports) {
     scrollToSection(section);
     document.getElementById('searchInput').value = '';
     document.getElementById('searchResults').classList.remove('active');
+
+    if (openReports) {
+        const isMobile = window.isMobileDevice ? window.isMobileDevice() : window.innerWidth <= 768;
+        if (!isMobile && typeof openReportsPanel === 'function') {
+            setTimeout(openReportsPanel, 350);
+        }
+    }
 }
