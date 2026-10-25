@@ -12,7 +12,7 @@ const REPORTS = [
     { group: 'machines', name: 'MonitorsTwo', icon: 'monitorstwo', meta: 'Hack The Box · Linux · Easy',   tags: ['Web RCE', 'Docker', 'Cacti'],        pdf: 'reports/monitorstwo.pdf', sha256: '4814428936b46836c3d68fa200b1e467f3cdcf90a83fc053305380dd30d3fb3b' },
     { group: 'machines', name: 'TwoMillion',  icon: 'twomillion',  meta: 'Hack The Box · Linux · Easy',   tags: ['API abuse', 'RCE', 'Kernel exploit'],           pdf: 'reports/twomillion.pdf', sha256: '8b83bb2f3258849dae236f080e7e7dcff8562ecec15be8de0e5e57d24d0ea77c' },
     { group: 'machines', name: 'Sea',         icon: 'sea',         meta: 'Hack The Box · Linux · Easy',   tags: ['XSS', 'Tunneling', 'SUID'],                     pdf: 'reports/sea.pdf', sha256: '967e284fa76ee894f12a8d8010a51f3f6944388cfc724345c5bbc0c8afa56ad3' },
-    { group: 'machines', name: 'Fluffy',      icon: 'fluffy',      meta: 'Hack The Box · Windows · Easy', tags: ['Active Directory', 'ADCS', 'ESC16'], pdf: null },
+    { group: 'machines', name: 'Fluffy',      icon: 'fluffy',      meta: 'Hack The Box · Windows · Easy', tags: ['Active Directory', 'ADCS', 'ESC16'], pdf: 'reports/fluffy.pdf', sha256: '5a6e7775e5a21ae601822a7fbfd365a089c098ea01afd6e5b62cb58a360f78d0' },
     { group: 'machines', name: 'Support',     icon: 'support',     meta: 'Hack The Box · Windows · Easy', tags: ['Active Directory', 'LDAP', 'RBCD'],             pdf: null },
     { group: 'machines', name: 'Pilgrimage',  icon: 'pilgrimage',  meta: 'Hack The Box · Linux · Easy',   tags: ['Git secrets', 'File read', 'Cron'],             pdf: null },
     { group: 'machines', name: 'Keeper',      icon: 'keeper',      meta: 'Hack The Box · Linux · Easy',   tags: ['Default creds', 'KeePass', 'SSH keys'],         pdf: null },
