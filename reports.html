@@ -51,7 +51,10 @@
     <div class="pdf-modal" id="pdfModal" role="dialog" aria-modal="true">
         <div class="pdf-content">
             <div class="pdf-header">
-                <h3 id="pdfTitle"></h3>
+                <div class="pdf-title-wrap">
+                    <h3 id="pdfTitle"></h3>
+                    <button type="button" class="pdf-checksum" id="pdfChecksum" hidden></button>
+                </div>
                 <div class="pdf-actions">
                     <a id="pdfOpen" class="pdf-btn" target="_blank" rel="noopener noreferrer" data-en="Open in new tab" data-es="Abrir en pestaña nueva">Open in new tab</a>
                     <a id="pdfDownload" class="pdf-btn" download data-en="Download" data-es="Descargar">Download</a>

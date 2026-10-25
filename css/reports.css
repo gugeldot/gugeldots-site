@@ -373,9 +373,41 @@ body::before {
     border-bottom: 1px solid var(--purple-muted);
 }
 
+.pdf-title-wrap {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+    min-width: 0;
+}
+
 .pdf-header h3 {
     color: var(--text-primary);
     font-size: 1.1rem;
+}
+
+.pdf-checksum {
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    font-size: 0.72rem;
+    color: var(--text-secondary);
+    background: var(--bg-tertiary);
+    border: 1px solid var(--purple-muted);
+    border-radius: 4px;
+    padding: 0.2rem 0.55rem;
+    cursor: pointer;
+    line-height: 1.4;
+    transition: all 0.2s;
+    white-space: nowrap;
+}
+
+.pdf-checksum:hover {
+    border-color: var(--purple-accent);
+    color: var(--text-primary);
+}
+
+.pdf-checksum--copied {
+    border-color: var(--purple-accent);
+    color: var(--purple-accent);
 }
 
 .pdf-actions {

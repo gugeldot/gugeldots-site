@@ -33,6 +33,7 @@ const REPORTS = [
 const I18N = {
     en: {
         soon: 'Coming soon', ready: 'Available', view: 'View report',
+        checksumLoading: 'SHA-256 …', checksumCopied: 'Copied!', checksumTitle: 'Click to copy the full SHA-256 hash',
         groups: {
             machines: ['Machines', ''],
             labs: ['Labs & Large Machines', 'Multi-host environments: Active Directory, pivoting and recon'],
@@ -41,6 +42,7 @@ const I18N = {
     },
     es: {
         soon: 'Próximamente', ready: 'Disponible', view: 'Ver informe',
+        checksumLoading: 'SHA-256 …', checksumCopied: '¡Copiado!', checksumTitle: 'Clic para copiar el hash SHA-256 completo',
         groups: {
             machines: ['Máquinas', ''],
             labs: ['Labs y máquinas grandes', 'Entornos multi-host: Active Directory, pivoting y reconocimiento'],
@@ -48,6 +50,59 @@ const I18N = {
         }
     }
 };
+
+// pdf path -> full hex SHA-256, filled in lazily and kept for the session
+const checksumCache = new Map();
+let checksumToken = 0;
+
+function shortHash(hash) {
+    return `${hash.slice(0, 6)}…${hash.slice(-6)}`;
+}
+
+async function sha256Hex(url) {
+    const buf = await fetch(url).then(r => {
+        if (!r.ok) throw new Error('fetch failed');
+        return r.arrayBuffer();
+    });
+    const digest = await crypto.subtle.digest('SHA-256', buf);
+    return Array.from(new Uint8Array(digest)).map(b => b.toString(16).padStart(2, '0')).join('');
+}
+
+function updateChecksumBadge(pdf) {
+    const t = I18N[reportsLanguage];
+    const btn = document.getElementById('pdfChecksum');
+    const myToken = ++checksumToken;
+
+    if (checksumCache.has(pdf)) {
+        const hash = checksumCache.get(pdf);
+        btn.hidden = false;
+        btn.textContent = `SHA-256 ${shortHash(hash)}`;
+        btn.title = t.checksumTitle;
+        btn.dataset.fullHash = hash;
+        return;
+    }
+
+    btn.hidden = false;
+    btn.textContent = t.checksumLoading;
+    btn.removeAttribute('title');
+    delete btn.dataset.fullHash;
+
+    sha256Hex(pdf).then(hash => {
+        if (myToken !== checksumToken) return; // modal moved on to another report meanwhile
+        checksumCache.set(pdf, hash);
+        btn.textContent = `SHA-256 ${shortHash(hash)}`;
+        btn.title = t.checksumTitle;
+        btn.dataset.fullHash = hash;
+    }).catch(err => {
+        if (myToken !== checksumToken) return;
+        // Most common cause locally: opened via file:// (fetch() can't read local files there).
+        // Works fine once served over http(s), e.g. GitHub Pages.
+        btn.textContent = 'SHA-256 n/a';
+        btn.title = location.protocol === 'file:'
+            ? 'Checksum needs http(s):// (fetch() is blocked on file://). Serve the site locally to test it.'
+            : `Could not fetch the PDF to hash it (${err.message}).`;
+    });
+}
 
 let reportsLanguage = 'en';
 
@@ -111,12 +166,29 @@ function openPdfModal(name, pdf) {
     document.getElementById('pdfDownload').href = pdf;
     document.getElementById('pdfModal').classList.add('active');
     document.body.style.overflow = 'hidden';
+    updateChecksumBadge(pdf);
 }
 
 function closePdfModal() {
     document.getElementById('pdfModal').classList.remove('active');
     document.getElementById('pdfFrame').src = 'about:blank';
     document.body.style.overflow = '';
+    checksumToken++; // invalidate any checksum still being computed
+}
+
+function copyChecksum() {
+    const btn = document.getElementById('pdfChecksum');
+    const hash = btn.dataset.fullHash;
+    if (!hash) return;
+    navigator.clipboard.writeText(hash).catch(() => {});
+    const t = I18N[reportsLanguage];
+    const original = btn.textContent;
+    btn.textContent = t.checksumCopied;
+    btn.classList.add('pdf-checksum--copied');
+    setTimeout(() => {
+        btn.textContent = original;
+        btn.classList.remove('pdf-checksum--copied');
+    }, 1200);
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -140,6 +212,8 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('pdfModal').addEventListener('click', e => {
         if (e.target.id === 'pdfModal') closePdfModal();
     });
+
+    document.getElementById('pdfChecksum').addEventListener('click', copyChecksum);
 
     const embedded = document.documentElement.classList.contains('embed') && window.parent !== window;
     const closeParentPanel = () => window.parent.postMessage({ type: 'close-reports' }, '*');
