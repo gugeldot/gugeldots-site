@@ -149,7 +149,7 @@ function handleSearchResult(section, openReports) {
     if (openReports) {
         const isMobile = window.isMobileDevice ? window.isMobileDevice() : window.innerWidth <= 768;
         if (!isMobile && typeof openReportsPanel === 'function') {
-            setTimeout(openReportsPanel, 350);
+            setTimeout(openReportsPanel, 900);
         }
     }
 }
