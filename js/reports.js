@@ -9,7 +9,7 @@
 // group: machines (12 easy boxes) | labs (5 large labs) | guides (2 study guides)
 const REPORTS = [
     { group: 'machines', name: 'Editorial',   icon: 'editorial',   meta: 'Hack The Box · Linux · Easy',   tags: ['SSRF', 'Git secrets', 'Sudo abuse'],            pdf: 'reports/editorial.pdf', sha256: 'cd6f05fddad325f0a2722cd6833b2dcbc0221bf7a4fb5e6d7626758c860f0dd6' },
-    { group: 'machines', name: 'MonitorsTwo', icon: 'monitorstwo', meta: 'Hack The Box · Linux · Easy',   tags: ['Web RCE', 'Docker', 'Cacti'],        pdf: 'reports/monitorstwo.pdf', sha256: '2601e8e5e9d33f46bf101e67008270a1bf5bebbb4e6c3009905c117eb8223329' },
+    { group: 'machines', name: 'MonitorsTwo', icon: 'monitorstwo', meta: 'Hack The Box · Linux · Easy',   tags: ['Web RCE', 'Docker', 'Cacti'],        pdf: 'reports/monitorstwo.pdf', sha256: '4814428936b46836c3d68fa200b1e467f3cdcf90a83fc053305380dd30d3fb3b' },
     { group: 'machines', name: 'TwoMillion',  icon: 'twomillion',  meta: 'Hack The Box · Linux · Easy',   tags: ['API abuse', 'RCE', 'Kernel exploit'],           pdf: 'reports/twomillion.pdf', sha256: '8b83bb2f3258849dae236f080e7e7dcff8562ecec15be8de0e5e57d24d0ea77c' },
     { group: 'machines', name: 'Sea',         icon: 'sea',         meta: 'Hack The Box · Linux · Easy',   tags: ['XSS', 'Tunneling', 'SUID'],                     pdf: 'reports/sea.pdf', sha256: '967e284fa76ee894f12a8d8010a51f3f6944388cfc724345c5bbc0c8afa56ad3' },
     { group: 'machines', name: 'Fluffy',      icon: 'fluffy',      meta: 'Hack The Box · Windows · Easy', tags: ['Active Directory', 'ADCS', 'ESC16'], pdf: null },
