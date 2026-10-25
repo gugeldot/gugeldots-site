@@ -7,17 +7,17 @@
 // group: machines (12 easy boxes) | labs (5 large labs) | guides (2 study guides)
 const REPORTS = [
     { group: 'machines', name: 'Editorial',   icon: 'editorial',   meta: 'Hack The Box · Linux · Easy',   tags: ['SSRF', 'Git secrets', 'Sudo abuse'],            pdf: 'reports/editorial.pdf' },
-    { group: 'machines', name: 'MonitorsTwo', icon: 'monitorstwo', meta: 'Hack The Box · Linux · Easy',   tags: ['Web RCE', 'Docker', 'Credential reuse'],        pdf: 'reports/monitorstwo.pdf' },
+    { group: 'machines', name: 'MonitorsTwo', icon: 'monitorstwo', meta: 'Hack The Box · Linux · Easy',   tags: ['Web RCE', 'Docker', 'Cacti'],        pdf: 'reports/monitorstwo.pdf' },
     { group: 'machines', name: 'TwoMillion',  icon: 'twomillion',  meta: 'Hack The Box · Linux · Easy',   tags: ['API abuse', 'RCE', 'Kernel exploit'],           pdf: null },
     { group: 'machines', name: 'Sea',         icon: 'sea',         meta: 'Hack The Box · Linux · Easy',   tags: ['XSS', 'Tunneling', 'SUID'],                     pdf: null },
-    { group: 'machines', name: 'Fluffy',      icon: 'fluffy',      meta: 'Hack The Box · Windows · Easy', tags: ['Active Directory', 'ADCS', 'Shadow credentials'], pdf: null },
+    { group: 'machines', name: 'Fluffy',      icon: 'fluffy',      meta: 'Hack The Box · Windows · Easy', tags: ['Active Directory', 'ADCS', 'ESC16'], pdf: null },
     { group: 'machines', name: 'Support',     icon: 'support',     meta: 'Hack The Box · Windows · Easy', tags: ['Active Directory', 'LDAP', 'RBCD'],             pdf: null },
     { group: 'machines', name: 'Pilgrimage',  icon: 'pilgrimage',  meta: 'Hack The Box · Linux · Easy',   tags: ['Git secrets', 'File read', 'Cron'],             pdf: null },
     { group: 'machines', name: 'Keeper',      icon: 'keeper',      meta: 'Hack The Box · Linux · Easy',   tags: ['Default creds', 'KeePass', 'SSH keys'],         pdf: null },
     { group: 'machines', name: 'Analytics',   icon: 'analytics',   meta: 'Hack The Box · Linux · Easy',   tags: ['Web RCE', 'Docker', 'Kernel exploit'],          pdf: null },
     { group: 'machines', name: 'Valentine',   icon: 'valentine',   meta: 'Hack The Box · Linux · Easy',   tags: ['Heartbleed', 'SSH keys', 'tmux'],               pdf: null },
     { group: 'machines', name: 'Cicada',      icon: 'cicada',      meta: 'Hack The Box · Windows · Easy', tags: ['Active Directory', 'SMB', 'SeBackup'],          pdf: null },
-    { group: 'machines', name: 'SteamCloud',  icon: 'steamcloud',  meta: 'Hack The Box · Linux · Easy',   tags: ['Kubernetes', 'Default creds', 'Pod escape'],    pdf: null },
+    { group: 'machines', name: 'SteamCloud',  icon: 'steamcloud',  meta: 'Hack The Box · Linux · Easy',   tags: ['Kubernetes', 'Kubelet', 'Pod escape'],    pdf: null },
 
     { group: 'labs', name: 'Wreath',         icon: 'wreath',         meta: 'TryHackMe · 3 hosts',        tags: ['Pivoting', 'Multi-host'],                  pdf: null },
     { group: 'labs', name: 'BigPivoting',    icon: 'bigpivoting',    meta: 'Dockerlabs · 5 hosts',       tags: ['Pivoting', 'Chisel', 'Proxychains'],       pdf: null },
