@@ -91,7 +91,7 @@ function renderCard(r, t) {
     return `
     <article ${attrs}>
         <div class="report-body">
-            <span class="report-status ${ready ? 'report-status--ready' : ''}">${ready ? t.ready : t.soon}</span>
+            ${ready ? '' : `<span class="report-status">${t.soon}</span>`}
             <h3>${escapeHtml(r.name)}</h3>
             <p class="report-meta">${escapeHtml(r.meta)}</p>
             <div class="report-tags">
