@@ -8,9 +8,9 @@
 // icon: file name in resources/icons (png unless `ext` says otherwise)
 // group: machines (12 easy boxes) | labs (5 large labs) | guides (2 study guides)
 const REPORTS = [
-    { group: 'machines', name: 'Editorial',   icon: 'editorial',   meta: 'Hack The Box · Linux · Easy',   tags: ['SSRF', 'Git secrets', 'Sudo abuse'],            pdf: 'reports/editorial.pdf', sha256: 'beb18fda72787aae273d01c6b2048b7480c2ebd42b3eac5a98364d16f82d7bd0' },
+    { group: 'machines', name: 'Editorial',   icon: 'editorial',   meta: 'Hack The Box · Linux · Easy',   tags: ['SSRF', 'Git secrets', 'Sudo abuse'],            pdf: 'reports/editorial.pdf', sha256: 'cd6f05fddad325f0a2722cd6833b2dcbc0221bf7a4fb5e6d7626758c860f0dd6' },
     { group: 'machines', name: 'MonitorsTwo', icon: 'monitorstwo', meta: 'Hack The Box · Linux · Easy',   tags: ['Web RCE', 'Docker', 'Cacti'],        pdf: 'reports/monitorstwo.pdf', sha256: '2601e8e5e9d33f46bf101e67008270a1bf5bebbb4e6c3009905c117eb8223329' },
-    { group: 'machines', name: 'TwoMillion',  icon: 'twomillion',  meta: 'Hack The Box · Linux · Easy',   tags: ['API abuse', 'RCE', 'Kernel exploit'],           pdf: 'reports/twomillion.pdf', sha256: 'bd75c932e39076bb0d5840b7cacaa2291dfc4240f7c85fc98362ff003fd90380' },
+    { group: 'machines', name: 'TwoMillion',  icon: 'twomillion',  meta: 'Hack The Box · Linux · Easy',   tags: ['API abuse', 'RCE', 'Kernel exploit'],           pdf: 'reports/twomillion.pdf', sha256: '8b83bb2f3258849dae236f080e7e7dcff8562ecec15be8de0e5e57d24d0ea77c' },
     { group: 'machines', name: 'Sea',         icon: 'sea',         meta: 'Hack The Box · Linux · Easy',   tags: ['XSS', 'Tunneling', 'SUID'],                     pdf: null },
     { group: 'machines', name: 'Fluffy',      icon: 'fluffy',      meta: 'Hack The Box · Windows · Easy', tags: ['Active Directory', 'ADCS', 'ESC16'], pdf: null },
     { group: 'machines', name: 'Support',     icon: 'support',     meta: 'Hack The Box · Windows · Easy', tags: ['Active Directory', 'LDAP', 'RBCD'],             pdf: null },
