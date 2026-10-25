@@ -20,9 +20,9 @@ const REPORTS = [
     { group: 'machines', name: 'Valentine',   icon: 'valentine',   meta: 'Hack The Box · Linux · Easy',   tags: ['Heartbleed', 'SSH keys', 'tmux'],               pdf: 'reports/valentine.pdf', sha256: 'e2f334fbdf95af62e5bcfb1df36df58a5b9f8957fc4def77a1c2b6750b03f775' },
     { group: 'machines', name: 'Cicada',      icon: 'cicada',      meta: 'Hack The Box · Windows · Easy', tags: ['Active Directory', 'SMB', 'SeBackup'],          pdf: 'reports/cicada.pdf', sha256: '693d95be72ff8691c3adb9c7e87641c00e2da7e255908dc6171021a749309dff' },
     { group: 'machines', name: 'SteamCloud',  icon: 'steamcloud',  meta: 'Hack The Box · Linux · Easy',   tags: ['Kubernetes', 'Kubelet', 'Pod escape'],    pdf: 'reports/steamcloud.pdf', sha256: '26788425db12d0276891baa5b6a471cefce658e5413e7890bf923d9030e23b12' },
-    { group: 'machines', name: 'Paper',       icon: 'paper',       meta: 'Hack The Box · Linux · Easy',   tags: ['WordPress', 'Info leak', 'Rocket.Chat'],  pdf: null },
-    { group: 'machines', name: 'Usage',       icon: 'usage',       meta: 'Hack The Box · Linux · Easy',   tags: ['SQL injection', 'Laravel', '7-Zip abuse'], pdf: null },
-    { group: 'machines', name: 'Artificial',  icon: 'artificial',  meta: 'Hack The Box · Linux · Easy',   tags: ['Keras RCE', 'SQLite creds', 'Backrest'],  pdf: null },
+    { group: 'machines', name: 'Paper',       icon: 'paper',       meta: 'Hack The Box · Linux · Easy',   tags: ['WordPress', 'Info leak', 'Rocket.Chat'],  pdf: 'reports/paper.pdf', sha256: 'e34deb5c864c476f94fcd1fc24e309221e7071356ed2490f88c402ce61e25aff' },
+    { group: 'machines', name: 'Usage',       icon: 'usage',       meta: 'Hack The Box · Linux · Easy',   tags: ['SQL injection', 'Laravel', '7-Zip abuse'], pdf: 'reports/usage.pdf', sha256: 'ec43651bffd6b3a379b32c69ce869d470455abc26defd7d01a9cd0127d36bbe0' },
+    { group: 'machines', name: 'Artificial',  icon: 'artificial',  meta: 'Hack The Box · Linux · Easy',   tags: ['Keras RCE', 'SQLite creds', 'Backrest'],  pdf: 'reports/artificial.pdf', sha256: '3f1436b8f90bed01923f40c75a718c86338e92934f96268dcdeb3a57abdd5f02' },
 
     { group: 'labs', name: 'Wreath',         icon: 'wreath',         meta: 'TryHackMe · 3 hosts',        tags: ['Pivoting', 'Multi-host'],                  pdf: null },
     { group: 'labs', name: 'BigPivoting',    icon: 'bigpivoting',    meta: 'Dockerlabs · 5 hosts',       tags: ['Pivoting', 'Chisel', 'Proxychains'],       pdf: null },
