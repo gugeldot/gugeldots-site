@@ -3,12 +3,14 @@
 // ==========================================================================
 
 // Set `pdf` to the exported file once a report is ready; null shows "Coming soon".
+// `sha256`: hardcoded checksum of that exact pdf file, computed with `sha256sum reports/<file>.pdf`.
+// Recompute and update it by hand whenever a report's pdf is regenerated/replaced.
 // icon: file name in resources/icons (png unless `ext` says otherwise)
 // group: machines (12 easy boxes) | labs (5 large labs) | guides (2 study guides)
 const REPORTS = [
-    { group: 'machines', name: 'Editorial',   icon: 'editorial',   meta: 'Hack The Box · Linux · Easy',   tags: ['SSRF', 'Git secrets', 'Sudo abuse'],            pdf: 'reports/editorial.pdf' },
-    { group: 'machines', name: 'MonitorsTwo', icon: 'monitorstwo', meta: 'Hack The Box · Linux · Easy',   tags: ['Web RCE', 'Docker', 'Cacti'],        pdf: 'reports/monitorstwo.pdf' },
-    { group: 'machines', name: 'TwoMillion',  icon: 'twomillion',  meta: 'Hack The Box · Linux · Easy',   tags: ['API abuse', 'RCE', 'Kernel exploit'],           pdf: 'reports/twomillion.pdf' },
+    { group: 'machines', name: 'Editorial',   icon: 'editorial',   meta: 'Hack The Box · Linux · Easy',   tags: ['SSRF', 'Git secrets', 'Sudo abuse'],            pdf: 'reports/editorial.pdf', sha256: 'beb18fda72787aae273d01c6b2048b7480c2ebd42b3eac5a98364d16f82d7bd0' },
+    { group: 'machines', name: 'MonitorsTwo', icon: 'monitorstwo', meta: 'Hack The Box · Linux · Easy',   tags: ['Web RCE', 'Docker', 'Cacti'],        pdf: 'reports/monitorstwo.pdf', sha256: '2601e8e5e9d33f46bf101e67008270a1bf5bebbb4e6c3009905c117eb8223329' },
+    { group: 'machines', name: 'TwoMillion',  icon: 'twomillion',  meta: 'Hack The Box · Linux · Easy',   tags: ['API abuse', 'RCE', 'Kernel exploit'],           pdf: 'reports/twomillion.pdf', sha256: 'bd75c932e39076bb0d5840b7cacaa2291dfc4240f7c85fc98362ff003fd90380' },
     { group: 'machines', name: 'Sea',         icon: 'sea',         meta: 'Hack The Box · Linux · Easy',   tags: ['XSS', 'Tunneling', 'SUID'],                     pdf: null },
     { group: 'machines', name: 'Fluffy',      icon: 'fluffy',      meta: 'Hack The Box · Windows · Easy', tags: ['Active Directory', 'ADCS', 'ESC16'], pdf: null },
     { group: 'machines', name: 'Support',     icon: 'support',     meta: 'Hack The Box · Windows · Easy', tags: ['Active Directory', 'LDAP', 'RBCD'],             pdf: null },
@@ -33,7 +35,7 @@ const REPORTS = [
 const I18N = {
     en: {
         soon: 'Coming soon', ready: 'Available', view: 'View report',
-        checksumLoading: 'SHA-256 …', checksumCopied: 'Copied!', checksumTitle: 'Click to copy the full SHA-256 hash',
+        checksumCopied: 'Copied!', checksumTitle: 'Click to copy the full SHA-256 hash',
         groups: {
             machines: ['Machines', ''],
             labs: ['Labs & Large Machines', 'Multi-host environments: Active Directory, pivoting and recon'],
@@ -42,7 +44,7 @@ const I18N = {
     },
     es: {
         soon: 'Próximamente', ready: 'Disponible', view: 'Ver informe',
-        checksumLoading: 'SHA-256 …', checksumCopied: '¡Copiado!', checksumTitle: 'Clic para copiar el hash SHA-256 completo',
+        checksumCopied: '¡Copiado!', checksumTitle: 'Clic para copiar el hash SHA-256 completo',
         groups: {
             machines: ['Máquinas', ''],
             labs: ['Labs y máquinas grandes', 'Entornos multi-host: Active Directory, pivoting y reconocimiento'],
@@ -51,57 +53,21 @@ const I18N = {
     }
 };
 
-// pdf path -> full hex SHA-256, filled in lazily and kept for the session
-const checksumCache = new Map();
-let checksumToken = 0;
-
 function shortHash(hash) {
     return `${hash.slice(0, 6)}…${hash.slice(-6)}`;
 }
 
-async function sha256Hex(url) {
-    const buf = await fetch(url).then(r => {
-        if (!r.ok) throw new Error('fetch failed');
-        return r.arrayBuffer();
-    });
-    const digest = await crypto.subtle.digest('SHA-256', buf);
-    return Array.from(new Uint8Array(digest)).map(b => b.toString(16).padStart(2, '0')).join('');
-}
-
-function updateChecksumBadge(pdf) {
+function updateChecksumBadge(sha256) {
     const t = I18N[reportsLanguage];
     const btn = document.getElementById('pdfChecksum');
-    const myToken = ++checksumToken;
-
-    if (checksumCache.has(pdf)) {
-        const hash = checksumCache.get(pdf);
-        btn.hidden = false;
-        btn.textContent = `SHA-256 ${shortHash(hash)}`;
-        btn.title = t.checksumTitle;
-        btn.dataset.fullHash = hash;
+    if (!sha256) {
+        btn.hidden = true;
         return;
     }
-
     btn.hidden = false;
-    btn.textContent = t.checksumLoading;
-    btn.removeAttribute('title');
-    delete btn.dataset.fullHash;
-
-    sha256Hex(pdf).then(hash => {
-        if (myToken !== checksumToken) return; // modal moved on to another report meanwhile
-        checksumCache.set(pdf, hash);
-        btn.textContent = `SHA-256 ${shortHash(hash)}`;
-        btn.title = t.checksumTitle;
-        btn.dataset.fullHash = hash;
-    }).catch(err => {
-        if (myToken !== checksumToken) return;
-        // Most common cause locally: opened via file:// (fetch() can't read local files there).
-        // Works fine once served over http(s), e.g. GitHub Pages.
-        btn.textContent = 'SHA-256 n/a';
-        btn.title = location.protocol === 'file:'
-            ? 'Checksum needs http(s):// (fetch() is blocked on file://). Serve the site locally to test it.'
-            : `Could not fetch the PDF to hash it (${err.message}).`;
-    });
+    btn.textContent = `SHA-256 ${shortHash(sha256)}`;
+    btn.title = t.checksumTitle;
+    btn.dataset.fullHash = sha256;
 }
 
 let reportsLanguage = 'en';
@@ -115,7 +81,7 @@ function escapeHtml(text) {
 function renderCard(r, t) {
     const ready = Boolean(r.pdf);
     const attrs = ready
-        ? `class="report-card" tabindex="0" role="button" data-pdf="${escapeHtml(r.pdf)}" data-name="${escapeHtml(r.name)}"`
+        ? `class="report-card" tabindex="0" role="button" data-pdf="${escapeHtml(r.pdf)}" data-name="${escapeHtml(r.name)}" data-sha256="${escapeHtml(r.sha256 || '')}"`
         : 'class="report-card report-card--soon"';
     const icon = `<img src="resources/icons/${r.icon}.${r.ext || 'png'}" alt="" onerror="this.parentNode.classList.add('report-icon--missing');this.remove()">`;
 
@@ -159,21 +125,20 @@ function applyReportsLanguage() {
     renderReports();
 }
 
-function openPdfModal(name, pdf) {
+function openPdfModal(name, pdf, sha256) {
     document.getElementById('pdfTitle').textContent = name;
     document.getElementById('pdfFrame').src = pdf;
     document.getElementById('pdfOpen').href = pdf;
     document.getElementById('pdfDownload').href = pdf;
     document.getElementById('pdfModal').classList.add('active');
     document.body.style.overflow = 'hidden';
-    updateChecksumBadge(pdf);
+    updateChecksumBadge(sha256);
 }
 
 function closePdfModal() {
     document.getElementById('pdfModal').classList.remove('active');
     document.getElementById('pdfFrame').src = 'about:blank';
     document.body.style.overflow = '';
-    checksumToken++; // invalidate any checksum still being computed
 }
 
 function copyChecksum() {
@@ -199,7 +164,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const grid = document.getElementById('reportsGrid');
     const openFromCard = card => {
-        if (card && card.dataset.pdf) openPdfModal(card.dataset.name, card.dataset.pdf);
+        if (card && card.dataset.pdf) openPdfModal(card.dataset.name, card.dataset.pdf, card.dataset.sha256);
     };
     grid.addEventListener('click', e => openFromCard(e.target.closest('.report-card')));
     grid.addEventListener('keydown', e => {
