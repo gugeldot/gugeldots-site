@@ -30,7 +30,7 @@ const searchableContent = [
     { term: 'ISO 27001', section: 2, desc: 'Security management certification' },
     { term: 'HackTheBox', section: 3, desc: '+120 rooted machines • Master Grade III Rank' },
     { term: 'TryHackMe', section: 3, desc: 'Level Guru • Top 2% • 180+ rooms' },
-    { term: 'Reports / Reportes', section: 3, desc: 'HTB pentest writeups and reports, made with SysReptor', openReports: true },
+    { term: 'Reports', section: 3, desc: 'HTB pentest writeups and reports, made with SysReptor', openReports: true },
     { term: 'SysReptor', section: 3, desc: 'Self-hosted reporting platform used to write these reports', openReports: true },
 ];
 
