@@ -19,7 +19,7 @@ const REPORTS = [
     { group: 'machines', name: 'Analytics',   icon: 'analytics',   meta: 'Hack The Box · Linux · Easy',   tags: ['Web RCE', 'Docker', 'Kernel exploit'],          pdf: 'reports/analytics.pdf', sha256: 'b562649c5c554fbd1f66c311676e160bebcb4b73afed55eec677b28dc7f37a03' },
     { group: 'machines', name: 'Valentine',   icon: 'valentine',   meta: 'Hack The Box · Linux · Easy',   tags: ['Heartbleed', 'SSH keys', 'tmux'],               pdf: 'reports/valentine.pdf', sha256: 'e2f334fbdf95af62e5bcfb1df36df58a5b9f8957fc4def77a1c2b6750b03f775' },
     { group: 'machines', name: 'Cicada',      icon: 'cicada',      meta: 'Hack The Box · Windows · Easy', tags: ['Active Directory', 'SMB', 'SeBackup'],          pdf: 'reports/cicada.pdf', sha256: '693d95be72ff8691c3adb9c7e87641c00e2da7e255908dc6171021a749309dff' },
-    { group: 'machines', name: 'SteamCloud',  icon: 'steamcloud',  meta: 'Hack The Box · Linux · Easy',   tags: ['Kubernetes', 'Kubelet', 'Pod escape'],    pdf: null },
+    { group: 'machines', name: 'SteamCloud',  icon: 'steamcloud',  meta: 'Hack The Box · Linux · Easy',   tags: ['Kubernetes', 'Kubelet', 'Pod escape'],    pdf: 'reports/steamcloud.pdf', sha256: '26788425db12d0276891baa5b6a471cefce658e5413e7890bf923d9030e23b12' },
     { group: 'machines', name: 'Paper',       icon: 'paper',       meta: 'Hack The Box · Linux · Easy',   tags: ['WordPress', 'Info leak', 'Rocket.Chat'],  pdf: null },
     { group: 'machines', name: 'Usage',       icon: 'usage',       meta: 'Hack The Box · Linux · Easy',   tags: ['SQL injection', 'Laravel', '7-Zip abuse'], pdf: null },
     { group: 'machines', name: 'Artificial',  icon: 'artificial',  meta: 'Hack The Box · Linux · Easy',   tags: ['Keras RCE', 'SQLite creds', 'Backrest'],  pdf: null },
