@@ -391,9 +391,35 @@ const sidebarTranslations = {
     }
 };
 
+let langSwitching = false;
+
 function toggleLanguage() {
+    if (langSwitching) return;
+    langSwitching = true;
+
     currentLanguage = currentLanguage === 'en' ? 'es' : 'en';
-    updateLanguage();
+
+    // Update the toggle immediately so it feels responsive
+    document.querySelectorAll('.lang-option').forEach(option => {
+        option.classList.toggle('active', option.dataset.lang === currentLanguage);
+    });
+
+    // Fade out, swap text while invisible, fade back in
+    const container = document.getElementById('scrollContainer');
+    if (!container) {
+        updateLanguage();
+        langSwitching = false;
+        return;
+    }
+    container.classList.add('lang-fade');
+    setTimeout(() => {
+        updateLanguage();
+        // Double rAF so the new text is laid out before fading in
+        requestAnimationFrame(() => requestAnimationFrame(() => {
+            container.classList.remove('lang-fade');
+            setTimeout(() => { langSwitching = false; }, 300);
+        }));
+    }, 280);
 }
 
 function updateLanguage() {
