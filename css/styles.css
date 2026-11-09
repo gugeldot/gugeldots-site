@@ -746,11 +746,17 @@ body::before {
    ========================================================================== */
 
 .platform-links {
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1rem;
     margin-top: 2rem;
-    flex-wrap: wrap;
+    max-width: 1300px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media (max-width: 1100px) {
+    .platform-links { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
 .platform-badge {
@@ -758,7 +764,7 @@ body::before {
     align-items: center;
     gap: 1.2rem;
     background: var(--bg-secondary);
-    padding: 1.5rem 2rem;
+    padding: 1.25rem 1.25rem;
     border: 1px solid var(--purple-muted);
     border-radius: 8px;
     text-decoration: none;
@@ -1699,6 +1705,7 @@ body.mobile-layout .tech-tag {
 
 /* Platform badges mobile - Compact version */
 body.mobile-layout .platform-links {
+    display: flex;
     flex-direction: column;
     gap: 0.75rem;
     margin-bottom: 1.5rem;
